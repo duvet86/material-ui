@@ -13,8 +13,6 @@ const PageBuilder = ({ components }) =>
     <DragDropContextProvider backend={HTML5Backend}>
       <div>
         <PBComponentList components={components} />
-      </div>
-      <div>
         <PBDroppableArea />
       </div>
     </DragDropContextProvider>

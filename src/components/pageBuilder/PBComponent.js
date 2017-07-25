@@ -28,7 +28,7 @@ const PBComponent = ({ isDragging, connectDragSource, component }) => {
       style={{ opacity }}
       ref={instance => connectDragSource(findDOMNode(instance))}
     >
-      <i className={`fa fa-${icon}`} aria-hidden="true" /> {name}
+      {name}
     </ListItem>
   );
 };

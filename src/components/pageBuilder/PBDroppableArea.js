@@ -32,7 +32,6 @@ const PBDroppableArea = ({
   connectDropTarget,
   components
 }) => {
-  console.log(components);
   const isActive = canDrop && isOver;
 
   let backgroundColor = "#f8f8f8";
