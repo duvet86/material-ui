@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import withLoading from "lib/withLoading";
 
+import PageHeader from "components/core/PageHeader";
 import ChannelList from "components/channelList/ChannelList";
 import AddChannelContainer from "components/channelList/AddChannelContainer";
 import { channelsListQuery } from "components/channelList/graphqlQueries";
@@ -17,6 +18,7 @@ class ChannelListContainer extends Component {
     const { channels } = this.props;
     return (
       <div>
+        <PageHeader>Channel List</PageHeader>
         <AddChannelContainer />
         <ChannelList
           channels={channels}

@@ -8,8 +8,12 @@ const AddChannel = ({ handleKeyUp }) => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <label>Add New Channel</label>
-      <TextField hintText="Hint Text" onKeyUp={handleKeyUp} />
+      <TextField
+        fullWidth
+        hintText="Add New Channel"
+        floatingLabelText="Add New Channel"
+        onKeyUp={handleKeyUp}
+      />
     </form>
   );
 };

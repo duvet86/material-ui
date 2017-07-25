@@ -31,11 +31,10 @@ class AppContainer extends Component {
     const { applicationList, match: { params: { appKey } } } = this.props;
 
     let contentStyle = {
-      transition: "margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)",
-      margin: "20px 20px 20px 20px"
+      transition: "margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)"
     };
     if (this.state.drawerOpen) {
-      contentStyle.margin = "20px 20px 20px 276px";
+      contentStyle.marginLeft = "256px";
     }
 
     const app = applicationList.find(({ key }) => key === appKey);

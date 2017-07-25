@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { Grid } from "react-flexbox-grid";
 
 import asyncComponent from "lib/asyncComponent";
 import * as mapping from "lib/componentMapping";
@@ -8,7 +9,7 @@ import withLoading from "lib/withLoading";
 import NotFoundRoute from "components/routes/NotFoundRoute";
 
 const PageBody = ({ style, routes }) =>
-  <div style={style}>
+  <Grid fluid style={style}>
     <Switch>
       {routes.map(({ id, location, component }) =>
         <Route
@@ -34,6 +35,6 @@ const PageBody = ({ style, routes }) =>
       />
       <NotFoundRoute />
     </Switch>
-  </div>;
+  </Grid>;
 
 export default withLoading(PageBody);

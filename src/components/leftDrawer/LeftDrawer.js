@@ -32,7 +32,7 @@ function createMenu(links, appKey) {
 }
 
 const LeftDrawer = ({ open, handleToggle, appKey, menu, location }) =>
-  <Drawer open={open} containerStyle={{ top: "64px" }}>
+  <Drawer open={open} containerStyle={{ top: "48px", zIndex: 1000 }}>
     {createMenu(menu, appKey)}
   </Drawer>;
 

@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn
 } from "material-ui/Table";
+import { Row, Col } from "react-flexbox-grid";
 
 import PageHeader from "components/core/PageHeader";
 import SubHeader from "components/core/SubHeader";
@@ -16,12 +17,14 @@ import SpecifiedDomainRadarChart from "components/charting/SpecifiedDomainRadarC
 const DashBoard = () =>
   <div>
     <PageHeader>Dashboard</PageHeader>
-    <div>
-      <SimpleLineChart />
-    </div>
-    <div>
-      <SpecifiedDomainRadarChart />
-    </div>
+    <Row>
+      <Col xs={12} md={6}>
+        <SimpleLineChart />
+      </Col>
+      <Col xs={12} md={6}>
+        <SpecifiedDomainRadarChart />
+      </Col>
+    </Row>
     <SubHeader>Section title</SubHeader>
     <Table>
       <TableHeader>

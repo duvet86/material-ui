@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "material-ui/AppBar";
+import IconButton from "material-ui/IconButton";
+import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 
 import withLoading from "lib/withLoading";
 
@@ -17,8 +19,16 @@ const TopBar = ({
 }) =>
   <AppBar
     style={{ position: "fixed", top: 0 }}
+    iconStyleLeft={{ marginTop: 0 }}
+    iconStyleRight={{ margin: 0 }}
+    titleStyle={{ height: "initial", lineHeight: "46px" }}
     title={<ApplicationLabelLink appKey={appKey} appLabel={appLabel} />}
     onLeftIconButtonTouchTap={handleToggle}
+    iconElementLeft={
+      <IconButton>
+        <NavigationMenu />
+      </IconButton>
+    }
     iconElementRight={
       <div>
         <NotificationMenu />
