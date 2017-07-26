@@ -1,18 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { List } from "material-ui/List";
+import { List, ListItem } from "material-ui/List";
 
 import PBComponent from "components/pageBuilder/PBComponent";
 
-const PBComponentList = ({ components }) =>
+const PBComponentList = ({ componentsList }) =>
   <List>
-    {components.map(component =>
-      <PBComponent key={component.id} component={component} />
+    {componentsList.map(component =>
+      <ListItem key={component.id}>
+        <PBComponent component={component} />
+      </ListItem>
     )}
   </List>;
 
 PBComponentList.propTypes = {
-  components: PropTypes.array.isRequired
+  componentsList: PropTypes.array.isRequired
 };
 
 export default PBComponentList;

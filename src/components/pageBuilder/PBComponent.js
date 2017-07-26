@@ -1,7 +1,5 @@
 import React from "react";
-import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
-import { ListItem } from "material-ui/List";
 import { DragSource } from "react-dnd";
 
 import ItemTypes from "components/pageBuilder/ItemTypes";
@@ -20,16 +18,13 @@ const componentSource = {
 };
 
 const PBComponent = ({ isDragging, connectDragSource, component }) => {
-  const { icon, name } = component;
+  const { name } = component;
   const opacity = isDragging ? 0.4 : 1;
 
-  return (
-    <ListItem
-      style={{ opacity }}
-      ref={instance => connectDragSource(findDOMNode(instance))}
-    >
+  return connectDragSource(
+    <div style={{ opacity }}>
       {name}
-    </ListItem>
+    </div>
   );
 };
 

@@ -30,7 +30,7 @@ const PBDroppableArea = ({
   canDrop,
   isOver,
   connectDropTarget,
-  components
+  pageComponents
 }) => {
   const isActive = canDrop && isOver;
 
@@ -42,14 +42,14 @@ const PBDroppableArea = ({
   }
 
   let componentList;
-  if (components.lenght === 0) {
+  if (pageComponents.lenght === 0) {
     componentList = (
       <div style={textStyle}>
         {isActive ? "Release to drop" : "Drag a Component here"}
       </div>
     );
   } else {
-    componentList = components.map((c, index) =>
+    componentList = pageComponents.map((c, index) =>
       <div key={index}>
         {React.createElement(componentMapping[c.component])}
       </div>
