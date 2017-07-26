@@ -8,52 +8,52 @@ export const components = [
   {
     id: 1,
     name: "Checkbox Group",
-    icon: "check-square-o",
+    icon: "CheckBoxIcon",
     component: "CheckboxGroup"
   },
   {
     id: 2,
     name: "Date Field",
-    icon: "calendar"
+    icon: "CalendarIcon"
   },
   {
     id: 3,
     name: "File Upload",
-    icon: "upload"
+    icon: "FileUploadIcon"
   },
   {
     id: 4,
     name: "Header",
-    icon: "header"
+    icon: "TitleIcon"
   },
   {
     id: 5,
     name: "Multi Select",
-    icon: "list-ul"
+    icon: "MultiSelectIcon"
   },
   {
     id: 6,
     name: "Paragraph",
-    icon: "paragraph"
+    icon: "ParagraphIcon"
   },
   {
     id: 7,
     name: "Radio Group",
-    icon: "dot-circle-o"
+    icon: "RadioIcon"
   },
   {
     id: 8,
     name: "Select",
-    icon: "caret-square-o-down"
+    icon: "SelectIcon"
   },
   {
     id: 9,
     name: "Text Input",
-    icon: "pencil-square-o"
+    icon: "InputTextIcon"
   },
   {
     id: 10,
     name: "Text Area",
-    icon: "align-justify"
+    icon: "TextAreaIcon"
   }
 ];

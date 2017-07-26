@@ -15,6 +15,21 @@ const muiTheme = getMuiTheme({
 });
 
 class AppContainer extends Component {
+  static propTypes = {
+    applicationList: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        key: PropTypes.string.isRequired,
+        icon: PropTypes.string.isRequired
+      }).isRequired
+    ).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        appKey: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
+  };
+
   constructor(props, context) {
     super(props, context);
 
@@ -56,20 +71,5 @@ class AppContainer extends Component {
 
   _handleToggle = () => this.setState({ drawerOpen: !this.state.drawerOpen });
 }
-
-AppContainer.propTypes = {
-  applicationList: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      key: PropTypes.string.isRequired,
-      icon: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      appKey: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
-};
 
 export default withLoading(AppContainer);

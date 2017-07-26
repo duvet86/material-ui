@@ -4,14 +4,14 @@ import IconMenu from "material-ui/IconMenu";
 import MenuItem from "material-ui/MenuItem";
 
 import { white } from "material-ui/styles/colors";
-import Notifications from "material-ui/svg-icons/social/notifications";
+import NotificationsIcon from "material-ui/svg-icons/social/notifications";
 
 const NotificationMenu = props =>
   <IconMenu
     {...props}
     iconButtonElement={
       <IconButton>
-        <Notifications color={white} />
+        <NotificationsIcon color={white} />
       </IconButton>
     }
     targetOrigin={{ horizontal: "right", vertical: "bottom" }}

@@ -23,4 +23,6 @@ export default class PageBuilderContainer extends Component {
       />
     );
   }
+
+  _addComponentToPage = () 
 }

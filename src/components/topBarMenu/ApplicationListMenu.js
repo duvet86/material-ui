@@ -5,13 +5,13 @@ import IconMenu from "material-ui/IconMenu";
 import MenuItem from "material-ui/MenuItem";
 
 import { white } from "material-ui/styles/colors";
-import Apps from "material-ui/svg-icons/navigation/apps";
+import AppsIcon from "material-ui/svg-icons/navigation/apps";
 
 const ApplicationListMenu = ({ appList }) =>
   <IconMenu
     iconButtonElement={
       <IconButton>
-        <Apps color={white} />
+        <AppsIcon color={white} />
       </IconButton>
     }
     targetOrigin={{ horizontal: "right", vertical: "bottom" }}

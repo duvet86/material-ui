@@ -5,7 +5,7 @@ import IconMenu from "material-ui/IconMenu";
 import MenuItem from "material-ui/MenuItem";
 
 import { white } from "material-ui/styles/colors";
-import Person from "material-ui/svg-icons/social/person";
+import PersonIcon from "material-ui/svg-icons/social/person";
 
 import LogoutContainer from "components/logout/LogoutContainer";
 
@@ -13,7 +13,7 @@ const UserMenu = ({ userName, appKey }) =>
   <IconMenu
     iconButtonElement={
       <IconButton>
-        <Person color={white} />
+        <PersonIcon color={white} />
       </IconButton>
     }
     targetOrigin={{ horizontal: "right", vertical: "bottom" }}

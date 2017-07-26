@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
+import Divider from "material-ui/Divider";
 
+import * as iconMapping from "components/pageBuilder/iconMapping";
 import ItemTypes from "components/pageBuilder/ItemTypes";
 
 const componentSource = {
@@ -18,12 +20,18 @@ const componentSource = {
 };
 
 const PBComponent = ({ isDragging, connectDragSource, component }) => {
-  const { name } = component;
+  const { icon, name } = component;
   const opacity = isDragging ? 0.4 : 1;
 
   return connectDragSource(
     <div style={{ opacity }}>
-      {name}
+      <div style={{ padding: "10px", display: "flex", alignItems: "center" }}>
+        {React.createElement(iconMapping[icon])}
+        <div style={{ marginLeft: "7px" }}>
+          {name}
+        </div>
+      </div>
+      <Divider />
     </div>
   );
 };
