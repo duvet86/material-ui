@@ -1,7 +1,9 @@
-import CheckboxGroup from "components/formElements/CheckboxGroup";
+import CheckboxGroup from "components/formBuilder/formElements/CheckboxGroup";
+import DateField from "components/formBuilder/formElements/DateField";
 
 export const componentMapping = {
-  CheckboxGroup
+  CheckboxGroup,
+  DateField
 };
 
 export const components = [
@@ -14,7 +16,8 @@ export const components = [
   {
     id: 2,
     name: "Date Field",
-    icon: "CalendarIcon"
+    icon: "CalendarIcon",
+    component: "DateField"
   },
   {
     id: 3,

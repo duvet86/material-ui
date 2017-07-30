@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 
-import { componentMapping } from "lib/test";
-import ItemTypes from "components/pageBuilder/ItemTypes";
+import ItemTypes from "components/formBuilder/ItemTypes";
+import FormElementContainer from "components/formBuilder/formElements/FormElementContainer";
 
 const style = {
   border: "1px dashed #ddd",
@@ -21,16 +21,22 @@ const textStyle = {
 };
 
 const boxTarget = {
-  drop() {
-    return { name: "PBDroppableArea" };
+  drop({ onComponentAdd }, monitor) {
+    const { id, action } = monitor.getItem();
+    if (action === "UPDATE") {
+      return;
+    }
+    onComponentAdd(id);
   }
 };
 
-const PBDroppableArea = ({
+const DroppableArea = ({
   canDrop,
   isOver,
   connectDropTarget,
-  pageComponents
+  pageComponentIds,
+  componentsList,
+  onPageComponentMove
 }) => {
   const isActive = canDrop && isOver;
 
@@ -42,18 +48,25 @@ const PBDroppableArea = ({
   }
 
   let componentList;
-  if (pageComponents.lenght === 0) {
+  if (pageComponentIds.length === 0) {
     componentList = (
       <div style={textStyle}>
         {isActive ? "Release to drop" : "Drag a Component here"}
       </div>
     );
   } else {
-    componentList = pageComponents.map((c, index) =>
-      <div key={index}>
-        {React.createElement(componentMapping[c.component])}
-      </div>
-    );
+    console.log(pageComponentIds);
+    componentList = pageComponentIds.map((elementId, index) => {
+      const item = componentsList.find(({ id }) => id === elementId);
+      return (
+        <FormElementContainer
+          key={index}
+          index={index}
+          formItem={item}
+          onPageComponentMove={onPageComponentMove}
+        />
+      );
+    });
   }
 
   return connectDropTarget(
@@ -63,7 +76,8 @@ const PBDroppableArea = ({
   );
 };
 
-PBDroppableArea.propTypes = {
+DroppableArea.propTypes = {
+  componentsList: PropTypes.array.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
   canDrop: PropTypes.bool.isRequired
@@ -77,4 +91,4 @@ export default DropTarget(
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
   })
-)(PBDroppableArea);
+)(DroppableArea);
