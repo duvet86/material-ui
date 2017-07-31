@@ -23,10 +23,14 @@ export default class FormBuilderContainer extends Component {
         pageComponentIds={this.state.pageComponentIds}
         onComponentAdd={this._onComponentAdd}
         onPageComponentMove={this._onPageComponentMove}
-        totOfPageItems={this.state.pageComponentIds.length}
+        nItemsInPage={this.state.pageComponentIds.length}
+        findItemIndexById={this._findItemIndexById}
       />
     );
   }
+
+  _findItemIndexById = itemId =>
+    this.state.pageComponentIds.indexOf(itemId);
 
   _onComponentAdd = id => {
     this.setState(
@@ -38,11 +42,12 @@ export default class FormBuilderContainer extends Component {
     );
   };
 
-  _onPageComponentMove = (dragIndex, hoverIndex, elementId) => {
+  _onPageComponentMove = (itemId, atIndex) => {
+    const itemIndex = this._findItemIndexById(itemId);
     this.setState(
       update(this.state, {
         pageComponentIds: {
-          $splice: [[dragIndex, 1], [hoverIndex, 0, elementId]]
+          $splice: [[itemIndex, 1], [atIndex, 0, itemId]]
         }
       })
     );

@@ -21,12 +21,13 @@ const textStyle = {
 };
 
 const boxTarget = {
-  drop({ onComponentAdd }, monitor) {
+  drop(props, monitor) {
     const { id, action } = monitor.getItem();
-    if (action === "UPDATE") {
+
+    if (action === "UPDATE" || monitor.didDrop()) {
       return;
     }
-    onComponentAdd(id);
+    props.onComponentAdd(id);
   }
 };
 
@@ -36,7 +37,8 @@ const DroppableArea = ({
   connectDropTarget,
   pageComponentIds,
   componentsList,
-  onPageComponentMove
+  onPageComponentMove,
+  findItemIndexById
 }) => {
   const isActive = canDrop && isOver;
 
@@ -55,13 +57,12 @@ const DroppableArea = ({
       </div>
     );
   } else {
-    console.log(pageComponentIds);
     componentList = pageComponentIds.map((elementId, index) => {
       const item = componentsList.find(({ id }) => id === elementId);
       return (
         <FormElementContainer
           key={index}
-          index={index}
+          findItemIndexById={findItemIndexById}
           formItem={item}
           onPageComponentMove={onPageComponentMove}
         />

@@ -4,12 +4,12 @@ import Paper from "material-ui/Paper";
 
 import DraggableComponent from "components/formBuilder/DraggableComponent";
 
-const DraggableComponentList = ({ componentsList, totOfPageItems }) =>
+const DraggableComponentList = ({ componentsList, nItemsInPage }) =>
   <Paper>
     {componentsList.map(component =>
       <DraggableComponent
         key={component.id}
-        index={totOfPageItems}
+        index={nItemsInPage}
         component={component}
       />
     )}

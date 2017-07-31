@@ -13,7 +13,8 @@ const FormBuilder = ({
   pageComponentIds,
   onComponentAdd,
   onPageComponentMove,
-  totOfPageItems
+  nItemsInPage,
+  findItemIndexById
 }) =>
   <div>
     <PageHeader>Page Builder</PageHeader>
@@ -21,7 +22,7 @@ const FormBuilder = ({
       <Col xs={12} sm={4} md={3}>
         <DraggableComponentList
           componentsList={componentsList}
-          totOfPageItems={totOfPageItems}
+          nItemsInPage={nItemsInPage}
         />
       </Col>
       <Col xs={12} sm={8} md={9}>
@@ -30,6 +31,8 @@ const FormBuilder = ({
           pageComponentIds={pageComponentIds}
           onComponentAdd={onComponentAdd}
           onPageComponentMove={onPageComponentMove}
+          nItemsInPage={nItemsInPage}
+          findItemIndexById={findItemIndexById}
         />
       </Col>
     </Row>
