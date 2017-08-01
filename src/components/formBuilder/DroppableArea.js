@@ -37,8 +37,7 @@ const DroppableArea = ({
   connectDropTarget,
   pageComponentIds,
   componentsList,
-  onPageComponentMove,
-  findItemIndexById
+  onPageComponentMove
 }) => {
   const isActive = canDrop && isOver;
 
@@ -62,7 +61,7 @@ const DroppableArea = ({
       return (
         <FormElementContainer
           key={index}
-          findItemIndexById={findItemIndexById}
+          index={index}
           formItem={item}
           onPageComponentMove={onPageComponentMove}
         />

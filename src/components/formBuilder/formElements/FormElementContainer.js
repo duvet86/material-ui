@@ -5,30 +5,34 @@ import { componentMapping } from "lib/test";
 import ItemTypes from "components/formBuilder/ItemTypes";
 
 const componentSource = {
-  beginDrag({ findItemIndexById, formItem: { id } }) {
-    return { id, action: "UPDATE", originalIndex: findItemIndexById(id) };
-  },
-  endDrag(props, monitor) {
-    const { originalIndex, id: droppedId } = monitor.getItem();
-    const didDrop = monitor.didDrop();
-
-    if (!didDrop) {
-      props.onPageComponentMove(droppedId, originalIndex);
-    }
+  beginDrag({ index, formItem: { id } }) {
+    return { index, id, action: "UPDATE" };
   }
+  // endDrag({ onPageComponentMove, index: droppedIndex }, monitor) {
+  //   const { id, index: originalIndex } = monitor.getItem();
+
+  //   if (!monitor.didDrop()) {
+  //     onPageComponentMove(droppedIndex, originalIndex, id);
+  //   }
+  // }
 };
 
 const boxTarget = {
   canDrop() {
     return false;
   },
-  hover(props, monitor, component) {
-    const { id: draggedId } = monitor.getItem();
-    const { formItem: { id: overId } } = props;
+  hover(
+    { onPageComponentMove, formItem: { id }, index: hoverIndex },
+    monitor,
+    component
+  ) {
+    const { id: dragIndexId, index: dragIndex } = monitor.getItem();
 
-    if (draggedId !== overId) {
-      const overIndex = props.findItemIndexById(overId);
-      props.onPageComponentMove(draggedId, overIndex);
+    console.log("dragIndexId", dragIndexId);
+    console.log("hoverId", id);
+
+    if (dragIndex !== hoverIndex) {
+      onPageComponentMove(dragIndex, hoverIndex, id);
     }
   }
 };

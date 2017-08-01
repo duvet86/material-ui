@@ -10,7 +10,7 @@ const DraggableComponentList = ({ componentsList, nItemsInPage }) =>
       <DraggableComponent
         key={component.id}
         index={nItemsInPage}
-        component={component}
+        formItem={component}
       />
     )}
   </Paper>;

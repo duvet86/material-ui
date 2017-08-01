@@ -7,13 +7,13 @@ import * as iconMapping from "components/formBuilder/iconMapping";
 import ItemTypes from "components/formBuilder/ItemTypes";
 
 const componentSource = {
-  beginDrag({ index, component }) {
-    return { index, id: component.id, action: "ADD" };
+  beginDrag({ index, formItem: { id } }) {
+    return { index, id, action: "ADD" };
   }
 };
 
-const DraggableComponent = ({ isDragging, connectDragSource, component }) => {
-  const { icon, name } = component;
+const DraggableComponent = ({ isDragging, connectDragSource, formItem }) => {
+  const { icon, name } = formItem;
   const opacity = isDragging ? 0.4 : 1;
 
   return connectDragSource(
@@ -32,7 +32,7 @@ const DraggableComponent = ({ isDragging, connectDragSource, component }) => {
 DraggableComponent.propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  component: PropTypes.shape({
+  formItem: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired

@@ -13,8 +13,7 @@ const FormBuilder = ({
   pageComponentIds,
   onComponentAdd,
   onPageComponentMove,
-  nItemsInPage,
-  findItemIndexById
+  nItemsInPage
 }) =>
   <div>
     <PageHeader>Page Builder</PageHeader>
@@ -32,7 +31,6 @@ const FormBuilder = ({
           onComponentAdd={onComponentAdd}
           onPageComponentMove={onPageComponentMove}
           nItemsInPage={nItemsInPage}
-          findItemIndexById={findItemIndexById}
         />
       </Col>
     </Row>
