@@ -5,31 +5,31 @@ import HTML5Backend from "react-dnd-html5-backend";
 import { Row, Col } from "react-flexbox-grid";
 
 import PageHeader from "components/core/PageHeader";
-import DraggableComponentList from "components/formBuilder/DraggableComponentList";
+import DraggableItemList from "components/formBuilder/DraggableItemList";
 import DroppableArea from "components/formBuilder/DroppableArea";
 
 const FormBuilder = ({
-  componentsList,
-  pageComponentIds,
-  onComponentAdd,
-  onPageComponentMove,
+  draggableItemList,
+  pageItemIds,
+  onItemAdd,
+  onPageItemMove,
   nItemsInPage
 }) =>
   <div>
     <PageHeader>Page Builder</PageHeader>
     <Row>
       <Col xs={12} sm={4} md={3}>
-        <DraggableComponentList
-          componentsList={componentsList}
+        <DraggableItemList
+          draggableItemList={draggableItemList}
           nItemsInPage={nItemsInPage}
         />
       </Col>
       <Col xs={12} sm={8} md={9}>
         <DroppableArea
-          componentsList={componentsList}
-          pageComponentIds={pageComponentIds}
-          onComponentAdd={onComponentAdd}
-          onPageComponentMove={onPageComponentMove}
+          draggableItemList={draggableItemList}
+          pageItemIds={pageItemIds}
+          onItemAdd={onItemAdd}
+          onPageItemMove={onPageItemMove}
           nItemsInPage={nItemsInPage}
         />
       </Col>
@@ -37,10 +37,11 @@ const FormBuilder = ({
   </div>;
 
 FormBuilder.propTypes = {
-  componentsList: PropTypes.array.isRequired,
-  pageComponentIds: PropTypes.array.isRequired,
-  onComponentAdd: PropTypes.func.isRequired,
-  onPageComponentMove: PropTypes.func.isRequired
+  draggableItemList: PropTypes.array.isRequired,
+  pageItemIds: PropTypes.array.isRequired,
+  onItemAdd: PropTypes.func.isRequired,
+  onPageItemMove: PropTypes.func.isRequired,
+  nItemsInPage: PropTypes.number.isRequired
 };
 
 export default DragDropContext(HTML5Backend)(FormBuilder);

@@ -14,4 +14,4 @@ const applicationList = asyncComponent(() =>
   import("components/applicationList/ApplicationListWithData")
 );
 
-export { dashBoard, channelsList, formBuilder, help, applicationList };
+export default { dashBoard, channelsList, formBuilder, help, applicationList };

@@ -1,3 +1,3 @@
 export default {
-  COMPONENT: "component"
+  FORM_ITEM: "FORM_ITEM"
 };

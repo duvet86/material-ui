@@ -21,13 +21,13 @@ const textStyle = {
 };
 
 const boxTarget = {
-  drop(props, monitor) {
+  drop({ onItemAdd }, monitor) {
     const { id, action } = monitor.getItem();
 
     if (action === "UPDATE" || monitor.didDrop()) {
       return;
     }
-    props.onComponentAdd(id);
+    onItemAdd(id);
   }
 };
 
@@ -35,9 +35,9 @@ const DroppableArea = ({
   canDrop,
   isOver,
   connectDropTarget,
-  pageComponentIds,
-  componentsList,
-  onPageComponentMove
+  pageItemIds,
+  draggableItemList,
+  onPageItemMove
 }) => {
   const isActive = canDrop && isOver;
 
@@ -49,21 +49,21 @@ const DroppableArea = ({
   }
 
   let componentList;
-  if (pageComponentIds.length === 0) {
+  if (pageItemIds.length === 0) {
     componentList = (
       <div style={textStyle}>
         {isActive ? "Release to drop" : "Drag a Component here"}
       </div>
     );
   } else {
-    componentList = pageComponentIds.map((elementId, index) => {
-      const item = componentsList.find(({ id }) => id === elementId);
+    componentList = pageItemIds.map((elementId, index) => {
+      const item = draggableItemList.find(({ id }) => id === elementId);
       return (
         <FormElementContainer
           key={index}
           index={index}
           formItem={item}
-          onPageComponentMove={onPageComponentMove}
+          onPageItemMove={onPageItemMove}
         />
       );
     });
@@ -77,14 +77,16 @@ const DroppableArea = ({
 };
 
 DroppableArea.propTypes = {
-  componentsList: PropTypes.array.isRequired,
+  pageItemIds: PropTypes.array.isRequired,
+  draggableItemList: PropTypes.array.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
-  canDrop: PropTypes.bool.isRequired
+  canDrop: PropTypes.bool.isRequired,
+  onPageItemMove: PropTypes.func.isRequired
 };
 
 export default DropTarget(
-  ItemTypes.COMPONENT,
+  ItemTypes.FORM_ITEM,
   boxTarget,
   (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),

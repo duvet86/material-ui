@@ -1,4 +1,4 @@
-import * as constants from "lib/constants";
+import constants from "lib/constants";
 import {
   getLocalStorageToken,
   deleteLocalStorageToken

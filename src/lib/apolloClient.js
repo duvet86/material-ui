@@ -5,14 +5,14 @@ import {
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 
 import { getLocalStorageToken } from "lib/localStorageAPI";
-import { GRAPHQL_URL, WEBSOCKET_URL } from "lib/constants";
+import constants from "lib/constants";
 
-const wsClient = new SubscriptionClient(WEBSOCKET_URL, {
+const wsClient = new SubscriptionClient(constants.WEBSOCKET_URL, {
   reconnect: true
 });
 
 const networkInterface = createNetworkInterface({
-  uri: GRAPHQL_URL
+  uri: constants.GRAPHQL_URL
 });
 
 networkInterface.use([

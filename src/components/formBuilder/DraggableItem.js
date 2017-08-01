@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
 import Divider from "material-ui/Divider";
 
-import * as iconMapping from "components/formBuilder/iconMapping";
+import iconMapping from "components/formBuilder/iconMapping";
 import ItemTypes from "components/formBuilder/ItemTypes";
 
 const componentSource = {
@@ -12,7 +12,7 @@ const componentSource = {
   }
 };
 
-const DraggableComponent = ({ isDragging, connectDragSource, formItem }) => {
+const DraggableItem = ({ isDragging, connectDragSource, formItem }) => {
   const { icon, name } = formItem;
   const opacity = isDragging ? 0.4 : 1;
 
@@ -29,7 +29,7 @@ const DraggableComponent = ({ isDragging, connectDragSource, formItem }) => {
   );
 };
 
-DraggableComponent.propTypes = {
+DraggableItem.propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
   formItem: PropTypes.shape({
@@ -40,10 +40,10 @@ DraggableComponent.propTypes = {
 };
 
 export default DragSource(
-  ItemTypes.COMPONENT,
+  ItemTypes.FORM_ITEM,
   componentSource,
   (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   })
-)(DraggableComponent);
+)(DraggableItem);

@@ -9,7 +9,7 @@ import SelectIcon from "material-ui/svg-icons/navigation/arrow-drop-down";
 import InputTextIcon from "material-ui/svg-icons/image/crop-7-5";
 import TextAreaIcon from "material-ui/svg-icons/image/crop-3-2";
 
-export {
+export default {
   CheckBoxIcon,
   CalendarIcon,
   FileUploadIcon,

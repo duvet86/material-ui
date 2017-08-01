@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { Grid } from "react-flexbox-grid";
 
 import asyncComponent from "lib/asyncComponent";
-import * as mapping from "lib/componentMapping";
+import componentMapping from "lib/componentMapping";
 import withLoading from "lib/withLoading";
 
 import NotFoundRoute from "components/routes/NotFoundRoute";
@@ -16,7 +16,7 @@ const PageBody = ({ style, routes }) =>
           key={id}
           exact
           path={`/:appKey${location}`}
-          component={mapping[component]}
+          component={componentMapping[component]}
         />
       )}
       <Route

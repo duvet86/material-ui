@@ -1,4 +1,4 @@
-import * as constants from "lib/constants";
+import constants from "lib/constants";
 
 export function setLocalStorageToken(value) {
   return sessionStorage.setItem(constants.TOKEN_NAME, JSON.stringify(value));
