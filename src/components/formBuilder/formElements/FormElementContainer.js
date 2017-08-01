@@ -2,7 +2,7 @@ import React from "react";
 import { findDOMNode } from "react-dom";
 import { DropTarget, DragSource } from "react-dnd";
 
-import { componentMapping } from "lib/test";
+import { formItemMapping } from "lib/test";
 import ItemTypes from "components/formBuilder/ItemTypes";
 
 const componentSource = {
@@ -22,13 +22,10 @@ const boxTarget = {
 
     // Determine rectangle on screen
     const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-
     // Get vertical middle
     const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
     // Determine mouse position
     const clientOffset = monitor.getClientOffset();
-
     // Get pixels to the top
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
@@ -40,7 +37,6 @@ const boxTarget = {
     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
       return;
     }
-
     // Dragging upwards
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
       return;
@@ -60,7 +56,7 @@ const boxTarget = {
 const FormElementContainer = ({
   connectDragSource,
   connectDropTarget,
-  ...props
+  formItem: { component }
 }) =>
   connectDragSource(
     connectDropTarget(
@@ -73,7 +69,7 @@ const FormElementContainer = ({
           marginBottom: "5px"
         }}
       >
-        {React.createElement(componentMapping[props.formItem.component], props)}
+        {React.createElement(formItemMapping[component])}
       </div>
     )
   );

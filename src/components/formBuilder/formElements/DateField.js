@@ -3,7 +3,7 @@ import DatePicker from "material-ui/DatePicker";
 
 const DateField = () =>
   <DatePicker
-    hintText="Landscape Inline Dialog"
+    hintText="Date Input"
     container="inline"
     mode="landscape"
   />;
