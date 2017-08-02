@@ -14,8 +14,8 @@ const ApplicationListMenu = ({ appList }) =>
         <AppsIcon color={white} />
       </IconButton>
     }
-    targetOrigin={{ horizontal: "right", vertical: "bottom" }}
-    anchorOrigin={{ horizontal: "right", vertical: "top" }}
+    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+    targetOrigin={{ horizontal: "right", vertical: "top" }}
   >
     {appList.map(({ label, key, icon }, index) =>
       <Link key={index} to={`/${key}`}>

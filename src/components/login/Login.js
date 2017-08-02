@@ -4,17 +4,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import { deepOrange500 } from "material-ui/styles/colors";
-import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import injectSheet from "react-jss";
 
+import muiTheme from "lib/muiTheme";
 import withLoading from "lib/withLoading";
 
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500
+const style = {
+  formSignin: {
+    maxWidth: "330px",
+    padding: "15px",
+    margin: "0 auto"
   }
-});
+};
 
 const Login = ({
   handleSubmit,
@@ -24,15 +26,15 @@ const Login = ({
   handlePasswordChange,
   emailValue,
   passwordValue,
-  errorMessage
+  errorMessage,
+  classes: { formSignin, marginBot }
 }) =>
   <MuiThemeProvider muiTheme={muiTheme}>
-    <form className="form-signin" onSubmit={handleSubmit}>
-      <h2 className="form-signin-heading">Please sign in</h2>
+    <form className={formSignin} onSubmit={handleSubmit}>
+      <h2>Please sign in</h2>
       <TextField
         fullWidth
         hintText="Email"
-        floatingLabelText="Email"
         value={emailValue}
         onChange={handleEmailChange}
         errorText={getEmailValidationState() ? "This field is required" : null}
@@ -40,7 +42,6 @@ const Login = ({
       <TextField
         fullWidth
         hintText="Password"
-        floatingLabelText="Password"
         type="password"
         value={passwordValue}
         onChange={handlePasswordChange}
@@ -69,4 +70,4 @@ Login.propTypes = {
   isLoading: PropTypes.bool.isRequired
 };
 
-export default withLoading(Login, true);
+export default withLoading(injectSheet(style)(Login), true);

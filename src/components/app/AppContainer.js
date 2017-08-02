@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { deepOrange500 } from "material-ui/styles/colors";
-import getMuiTheme from "material-ui/styles/getMuiTheme";
 
+import muiTheme from "lib/muiTheme";
 import withLoading from "lib/withLoading";
 
 import App from "components/app/App";
 import NotFoundRoute from "components/routes/NotFoundRoute";
-
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500
-  }
-});
 
 class AppContainer extends Component {
   static propTypes = {

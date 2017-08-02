@@ -4,12 +4,16 @@ import injectSheet from "react-jss";
 
 const style = {
   pageHeader: {
-    marginTop: 0
+    paddingBottom: ".3em",
+    fontSize: "1.5em",
+    margin: ".67em 0",
+    textTransform: "uppercase",
+    fontWeight: 500
   }
 };
 
-const PageHeader = ({ classes: { pageHeader }, children, ...props }) =>
-  <h1 className={pageHeader} {...props}>
+const PageHeader = ({ classes: { pageHeader }, children }) =>
+  <h1 className={pageHeader}>
     {children}
   </h1>;
 

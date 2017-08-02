@@ -1,23 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
+import injectSheet from "react-jss";
 
 import ItemTypes from "components/formBuilder/ItemTypes";
 import FormElementContainer from "components/formBuilder/formElements/FormElementContainer";
 
 const style = {
-  border: "1px dashed #ddd",
-  padding: "1rem",
-  minHeight: "411px",
-  position: "relative"
-};
-
-const textStyle = {
-  position: "absolute",
-  top: "50%",
-  height: "100px",
-  marginTop: "-50px",
-  width: "100%"
+  containerStyle: {
+    border: "1px dashed #ddd",
+    padding: "1rem",
+    minHeight: "411px",
+    position: "relative"
+  },
+  textStyle: {
+    position: "absolute",
+    top: "50%",
+    height: "100px",
+    marginTop: "-50px",
+    width: "100%"
+  }
 };
 
 const boxTarget = {
@@ -37,7 +39,8 @@ const DroppableArea = ({
   connectDropTarget,
   pageItemIds,
   draggableItemList,
-  onPageItemMove
+  onPageItemMove,
+  classes: { containerStyle, textStyle }
 }) => {
   const isActive = canDrop && isOver;
 
@@ -51,7 +54,7 @@ const DroppableArea = ({
   let componentList;
   if (pageItemIds.length === 0) {
     componentList = (
-      <div style={textStyle}>
+      <div className={textStyle}>
         {isActive ? "Release to drop" : "Drag a Component here"}
       </div>
     );
@@ -70,7 +73,7 @@ const DroppableArea = ({
   }
 
   return connectDropTarget(
-    <div style={{ ...style, backgroundColor }}>
+    <div style={{ backgroundColor }} className={containerStyle}>
       {componentList}
     </div>
   );
@@ -93,4 +96,4 @@ export default DropTarget(
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
   })
-)(DroppableArea);
+)(injectSheet(style)(DroppableArea));

@@ -4,13 +4,15 @@ import injectSheet from "react-jss";
 
 const style = {
   subHeader: {
-    paddingBottom: "10px",
-    borderBottom: "1px solid #eee"
+    paddingTop: ".8em",
+    textTransform: "uppercase",
+    fontSize: "1.2em",
+    fontWeight: 400
   }
 };
 
-const SubHeader = ({ classes: { subHeader }, children, ...props }) =>
-  <h2 className={subHeader} {...props}>
+const SubHeader = ({ classes: { subHeader }, children }) =>
+  <h2 className={subHeader}>
     {children}
   </h2>;
 

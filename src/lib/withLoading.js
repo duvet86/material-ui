@@ -9,8 +9,7 @@ export default function withLoading(WrappedComponent, showSpinner = false) {
       const { isLoading, error } = this.props;
       if (error) {
         return (
-          <h3 className="text-danger">
-            <i className="fa fa-exclamation-triangle" aria-hidden="true" />{" "}
+          <h3>
             {error ? JSON.stringify(error) : "Error! Component failed to load."}
           </h3>
         );

@@ -19,27 +19,29 @@ const data = [
 ];
 
 const SpecifiedDomainRadarChart = () =>
-  <ResponsiveContainer minWidth={200} minHeight={300}>
-    <RadarChart data={data}>
-      <Radar
-        name="Mike"
-        dataKey="A"
-        stroke="#8884d8"
-        fill="#8884d8"
-        fillOpacity={0.6}
-      />
-      <Radar
-        name="Lily"
-        dataKey="B"
-        stroke="#82ca9d"
-        fill="#82ca9d"
-        fillOpacity={0.6}
-      />
-      <PolarGrid />
-      <Legend />
-      <PolarAngleAxis dataKey="subject" />
-      <PolarRadiusAxis angle={30} domain={[0, 150]} />
-    </RadarChart>
-  </ResponsiveContainer>;
+  <div style={{ paddingBottom: "35px" }}>
+    <ResponsiveContainer minWidth={200} minHeight={300}>
+      <RadarChart data={data}>
+        <Radar
+          name="Mike"
+          dataKey="A"
+          stroke="#8884d8"
+          fill="#8884d8"
+          fillOpacity={0.6}
+        />
+        <Radar
+          name="Lily"
+          dataKey="B"
+          stroke="#82ca9d"
+          fill="#82ca9d"
+          fillOpacity={0.6}
+        />
+        <PolarGrid />
+        <Legend />
+        <PolarAngleAxis dataKey="subject" />
+        <PolarRadiusAxis angle={30} domain={[0, 150]} />
+      </RadarChart>
+    </ResponsiveContainer>
+  </div>;
 
 export default SpecifiedDomainRadarChart;

@@ -14,8 +14,8 @@ const NotificationMenu = props =>
         <NotificationsIcon color={white} />
       </IconButton>
     }
-    targetOrigin={{ horizontal: "right", vertical: "bottom" }}
-    anchorOrigin={{ horizontal: "right", vertical: "top" }}
+    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+    targetOrigin={{ horizontal: "right", vertical: "top" }}
   >
     <MenuItem primaryText="Refresh" />
     <MenuItem primaryText="Help" />

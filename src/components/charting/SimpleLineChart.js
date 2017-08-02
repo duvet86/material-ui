@@ -21,21 +21,23 @@ const data = [
 ];
 
 const SimpleLineChart = () =>
-  <ResponsiveContainer minWidth={200} minHeight={300}>
-    <LineChart data={data}>
-      <XAxis dataKey="name" />
-      <YAxis />
-      <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
-  </ResponsiveContainer>;
+  <div style={{ padding: "20px 30px 15px 0px" }}>
+    <ResponsiveContainer minWidth={200} minHeight={300}>
+      <LineChart data={data}>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="pv"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>;
 
 export default SimpleLineChart;

@@ -6,14 +6,14 @@ import { isUserAuthenticated } from "lib/authApi";
 
 import RedirectToStartPageWithData from "components/routes/RedirectToStartPageWithData";
 
-const UnauthenticatedRoute = ({ component, ...props }) =>
-  <Route
-    {...props}
-    render={props =>
-      !isUserAuthenticated()
-        ? React.createElement(component, props)
-        : <RedirectToStartPageWithData location={props.location} />}
-  />;
+const UnauthenticatedRoute = ({ component, ...props }) => {
+  const boundRender = props =>
+    !isUserAuthenticated()
+      ? React.createElement(component, props)
+      : <RedirectToStartPageWithData location={props.location} />;
+
+  return <Route {...props} render={boundRender} />;
+};
 
 UnauthenticatedRoute.propTypes = {
   component: PropTypes.func.isRequired

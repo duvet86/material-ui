@@ -2,9 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
 import Divider from "material-ui/Divider";
+import injectSheet from "react-jss";
 
 import iconMapping from "components/formBuilder/iconMapping";
 import ItemTypes from "components/formBuilder/ItemTypes";
+
+const style = {
+  flexContainer: {
+    cursor: "pointer",
+    padding: "10px",
+    display: "flex",
+    alignItems: "center"
+  },
+  itemLabel: {
+    marginLeft: "7px"
+  }
+};
 
 const componentSource = {
   beginDrag({ index, formItem: { id } }) {
@@ -12,15 +25,20 @@ const componentSource = {
   }
 };
 
-const DraggableItem = ({ isDragging, connectDragSource, formItem }) => {
+const DraggableItem = ({
+  isDragging,
+  connectDragSource,
+  formItem,
+  classes: { flexContainer, itemLabel }
+}) => {
   const { icon, name } = formItem;
   const opacity = isDragging ? 0.4 : 1;
 
   return connectDragSource(
     <div style={{ opacity }}>
-      <div style={{ padding: "10px", display: "flex", alignItems: "center" }}>
+      <div className={flexContainer}>
         {React.createElement(iconMapping[icon])}
-        <div style={{ marginLeft: "7px" }}>
+        <div className={itemLabel}>
           {name}
         </div>
       </div>
@@ -46,4 +64,4 @@ export default DragSource(
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   })
-)(DraggableItem);
+)(injectSheet(style)(DraggableItem));

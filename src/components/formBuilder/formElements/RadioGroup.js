@@ -4,9 +4,6 @@ import ActionFavorite from "material-ui/svg-icons/action/favorite";
 import ActionFavoriteBorder from "material-ui/svg-icons/action/favorite-border";
 
 const styles = {
-  block: {
-    maxWidth: 250
-  },
   radioButton: {
     marginBottom: 16
   }

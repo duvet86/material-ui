@@ -4,19 +4,19 @@ import { Route, Redirect } from "react-router-dom";
 
 import { isUserAuthenticated } from "lib/authApi";
 
-const AuthenticatedRoute = ({ component, ...props }) =>
-  <Route
-    {...props}
-    render={props =>
-      isUserAuthenticated()
-        ? React.createElement(component, props)
-        : <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />}
-  />;
+const AuthenticatedRoute = ({ component, ...props }) => {
+  const boundRender = props =>
+    isUserAuthenticated()
+      ? React.createElement(component, props)
+      : <Redirect
+          to={{
+            pathname: "/login",
+            state: { from: props.location }
+          }}
+        />;
+
+  return <Route {...props} render={boundRender} />;
+};
 
 AuthenticatedRoute.propTypes = {
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired

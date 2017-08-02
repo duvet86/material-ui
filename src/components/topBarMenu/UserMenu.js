@@ -16,8 +16,8 @@ const UserMenu = ({ userName, appKey }) =>
         <PersonIcon color={white} />
       </IconButton>
     }
-    targetOrigin={{ horizontal: "right", vertical: "bottom" }}
-    anchorOrigin={{ horizontal: "right", vertical: "top" }}
+    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+    targetOrigin={{ horizontal: "right", vertical: "top" }}
   >
     <Link to={`/${appKey}/profile`}>
       <MenuItem primaryText={userName} />

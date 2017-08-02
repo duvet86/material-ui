@@ -1,9 +1,20 @@
 import React from "react";
 import { findDOMNode } from "react-dom";
 import { DropTarget, DragSource } from "react-dnd";
+import injectSheet from "react-jss";
 
 import { formItemMapping } from "lib/test";
 import ItemTypes from "components/formBuilder/ItemTypes";
+
+const style = {
+  formElement: {
+    cursor: "pointer",
+    padding: "5px",
+    borderRadius: "2px",
+    border: "#eee solid",
+    marginBottom: "5px"
+  }
+};
 
 const componentSource = {
   beginDrag({ index, formItem: { id } }) {
@@ -56,19 +67,12 @@ const boxTarget = {
 const FormElementContainer = ({
   connectDragSource,
   connectDropTarget,
-  formItem: { component }
+  formItem: { component },
+  classes: { formElement }
 }) =>
   connectDragSource(
     connectDropTarget(
-      <div
-        style={{
-          cursor: "pointer",
-          padding: "5px",
-          borderRadius: "2px",
-          border: "#eee solid",
-          marginBottom: "5px"
-        }}
-      >
+      <div className={formElement}>
         {React.createElement(formItemMapping[component])}
       </div>
     )
@@ -86,5 +90,5 @@ export default DropTarget(
   DragSource(ItemTypes.FORM_ITEM, componentSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
-  }))(FormElementContainer)
+  }))(injectSheet(style)(FormElementContainer))
 );
