@@ -1,10 +1,15 @@
-import "components/core/css/pageHeader.css";
-
 import React from "react";
 import PropTypes from "prop-types";
+import injectSheet from "react-jss";
 
-const PageHeader = ({ children, ...props }) =>
-  <h1 className="page-header" {...props}>
+const style = {
+  pageHeader: {
+    marginTop: 0
+  }
+};
+
+const PageHeader = ({ classes: { pageHeader }, children, ...props }) =>
+  <h1 className={pageHeader} {...props}>
     {children}
   </h1>;
 
@@ -16,4 +21,4 @@ PageHeader.propTypes = {
   ])
 };
 
-export default PageHeader;
+export default injectSheet(style)(PageHeader);

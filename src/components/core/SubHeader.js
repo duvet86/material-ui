@@ -1,10 +1,16 @@
-import "components/core/css/subHeader.css";
-
 import React from "react";
 import PropTypes from "prop-types";
+import injectSheet from "react-jss";
 
-const SubHeader = ({ children, ...props }) =>
-  <h2 className="sub-header" {...props}>
+const style = {
+  subHeader: {
+    paddingBottom: "10px",
+    borderBottom: "1px solid #eee"
+  }
+};
+
+const SubHeader = ({ classes: { subHeader }, children, ...props }) =>
+  <h2 className={subHeader} {...props}>
     {children}
   </h2>;
 
@@ -16,4 +22,4 @@ SubHeader.propTypes = {
   ])
 };
 
-export default SubHeader;
+export default injectSheet(style)(SubHeader);
