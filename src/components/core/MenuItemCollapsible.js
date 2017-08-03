@@ -6,26 +6,28 @@ import FolderOpenIcon from "material-ui/svg-icons/file/folder-open";
 
 export default class MenuItemCollapsible extends Component {
   state = { isOpen: false };
-  MenuItemCollapsible = {
-    muiName: "ListItem"
-  };
 
   render() {
-    const { label, children, appKey } = this.props;
+    const { label, children, appKey, pathname } = this.props;
+    const style = { backgroundColor: "rgba(0, 0, 0, 0.2)" };
+
     return (
       <ListItem
         leftIcon={this.state.isOpen ? <FolderOpenIcon /> : <FolderIcon />}
         primaryText={label}
         primaryTogglesNestedList={true}
         onNestedListToggle={this._onToggle}
-        nestedItems={children.map(({ id, location, label }) =>
-          <ListItem
-            key={id}
-            primaryText={label}
-            value={`/${appKey}${location}`}
-            containerElement={<Link to={`/${appKey}${location}`} />}
-          />
-        )}
+        nestedItems={children.map(({ id, location, label }) => {
+          const locationPath = `/${appKey}${location}`;
+          return (
+            <ListItem
+              key={id}
+              primaryText={label}
+              style={pathname === locationPath ? style : null}
+              containerElement={<Link to={`/${appKey}${location}`} />}
+            />
+          );
+        })}
       />
     );
   }
@@ -36,3 +38,5 @@ export default class MenuItemCollapsible extends Component {
     });
   };
 }
+
+MenuItemCollapsible.muiName = "ListItem";

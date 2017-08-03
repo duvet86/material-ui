@@ -14,7 +14,8 @@ const App = ({
   appList,
   currentAppLabel,
   currentAppKey,
-  location
+  location,
+  match
 }) =>
   <MuiThemeProvider muiTheme={muiTheme}>
     <div>
@@ -23,6 +24,7 @@ const App = ({
         appList={appList}
         appLabel={currentAppLabel}
         appKey={currentAppKey}
+        match={match}
       />
       <LeftDrawerWithData
         open={drawerState}

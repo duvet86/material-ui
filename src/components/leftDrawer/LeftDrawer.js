@@ -1,44 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Drawer from "material-ui/Drawer";
-import { List, ListItem, makeSelectable } from "material-ui/List";
+import { ListItem } from "material-ui/List";
 import LinkIcon from "material-ui/svg-icons/content/link";
 
 import withLoading from "lib/withLoading";
 
 import MenuItemCollapsible from "components/core/MenuItemCollapsible";
 
-const SelectableList = makeSelectable(List);
-
-function createMenu(links, appKey) {
+const createMenu = (links, appKey, pathname) => {
   return links.map(({ id, location, label, children }) => {
     if (location) {
+      const locationPath = `/${appKey}${location}`;
+      const style = { backgroundColor: "rgba(0, 0, 0, 0.2)" };
       return (
         <ListItem
           key={id}
           leftIcon={<LinkIcon />}
           primaryText={label}
-          value={`/${appKey}${location}`}
-          containerElement={<Link to={`/${appKey}${location}`} />}
+          style={pathname === locationPath ? style : null}
+          containerElement={<Link to={locationPath} />}
         />
       );
     }
     return children.children
-      ? createMenu(children.children, appKey)
+      ? createMenu(children.children, appKey, pathname)
       : <MenuItemCollapsible
           key={id}
           appKey={appKey}
           label={label}
+          pathname={pathname}
           children={children}
         />;
   });
-}
+};
 
-const LeftDrawer = ({ open, appKey, menu, location }) =>
+const LeftDrawer = ({ open, appKey, menu, location: { pathname } }) =>
   <Drawer open={open} containerStyle={{ top: "48px", zIndex: 1000 }}>
-    <SelectableList value={location.pathname}>
-      {createMenu(menu, appKey)}
-    </SelectableList>
+    {createMenu(menu, appKey, pathname)}
   </Drawer>;
 
 export default withLoading(LeftDrawer);

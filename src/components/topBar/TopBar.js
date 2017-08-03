@@ -12,8 +12,9 @@ import UserMenu from "components/topBarMenu/UserMenu";
 import NotificationMenu from "components/topBarMenu/NotificationMenu";
 
 const TopBar = ({
-  handleToggle,
   user: { name, role: { appList } },
+  match,
+  handleToggle,
   appLabel,
   appKey
 }) =>
@@ -33,7 +34,7 @@ const TopBar = ({
       <div>
         <NotificationMenu />
         <UserMenu userName={name} appKey={appKey} />
-        <ApplicationListMenu appList={appList} />
+        <ApplicationListMenu appList={appList} match={match} />
       </div>
     }
   />;

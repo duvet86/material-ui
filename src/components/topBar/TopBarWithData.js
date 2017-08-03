@@ -10,10 +10,10 @@ const queryOptions = {
     variables: { id: getUserIdFromToken() }
   }),
   props: ({ ownProps, data: { loading, error, userById } }) => ({
-    ...ownProps,
     isLoading: loading,
     user: userById,
-    error
+    error,
+    ...ownProps
   })
 };
 
