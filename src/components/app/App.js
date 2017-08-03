@@ -13,7 +13,8 @@ const App = ({
   contentStyle,
   appList,
   currentAppLabel,
-  currentAppKey
+  currentAppKey,
+  location
 }) =>
   <MuiThemeProvider muiTheme={muiTheme}>
     <div>
@@ -27,6 +28,7 @@ const App = ({
         open={drawerState}
         handleToggle={handleToggle}
         appKey={currentAppKey}
+        location={location}
       />
       <PageBodyWithData style={contentStyle} appKey={currentAppKey} />
     </div>

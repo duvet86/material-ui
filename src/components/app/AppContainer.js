@@ -36,7 +36,11 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { applicationList, match: { params: { appKey } } } = this.props;
+    const {
+      applicationList,
+      location,
+      match: { params: { appKey } }
+    } = this.props;
 
     let contentStyle = {
       transition: "margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)"
@@ -56,6 +60,7 @@ class AppContainer extends Component {
           appList={applicationList}
           currentAppLabel={app.label}
           currentAppKey={app.key}
+          location={location}
         />
       );
     }

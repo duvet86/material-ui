@@ -5,10 +5,10 @@ import FolderIcon from "material-ui/svg-icons/file/folder";
 import FolderOpenIcon from "material-ui/svg-icons/file/folder-open";
 
 export default class MenuItemCollapsible extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isOpen: false };
-  }
+  state = { isOpen: false };
+  MenuItemCollapsible = {
+    muiName: "ListItem"
+  };
 
   render() {
     const { label, children, appKey } = this.props;
@@ -22,6 +22,7 @@ export default class MenuItemCollapsible extends Component {
           <ListItem
             key={id}
             primaryText={label}
+            value={`/${appKey}${location}`}
             containerElement={<Link to={`/${appKey}${location}`} />}
           />
         )}

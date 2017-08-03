@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import IconButton from "material-ui/IconButton";
 import IconMenu from "material-ui/IconMenu";
-import MenuItem from "material-ui/MenuItem";
-
+import Divider from "material-ui/Divider";
 import { white } from "material-ui/styles/colors";
 import PersonIcon from "material-ui/svg-icons/social/person";
 
+import LinkMenuItem from "components/core/LinkMenuItem";
 import LogoutContainer from "components/logout/LogoutContainer";
 
 const UserMenu = ({ userName, appKey }) =>
@@ -19,12 +18,9 @@ const UserMenu = ({ userName, appKey }) =>
     anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     targetOrigin={{ horizontal: "right", vertical: "top" }}
   >
-    <Link to={`/${appKey}/profile`}>
-      <MenuItem primaryText={userName} />
-    </Link>
-    <Link to={`/${appKey}/settings`}>
-      <MenuItem primaryText="Settings" />
-    </Link>
+    <LinkMenuItem to={`/${appKey}/profile`} label={userName} />
+    <LinkMenuItem to={`/${appKey}/settings`} label="Settings" />
+    <Divider />
     <LogoutContainer />
   </IconMenu>;
 
