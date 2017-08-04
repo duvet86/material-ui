@@ -4,19 +4,22 @@ import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import { Row, Col } from "react-flexbox-grid";
 
-import PageHeader from "components/core/PageHeader";
+import SubHeader from "components/core/SubHeader";
 import DraggableItemList from "components/formBuilder/DraggableItemList";
 import DroppableArea from "components/formBuilder/DroppableArea";
+import PageToolbar from "components/formBuilder/PageToolbar";
 
 const FormBuilder = ({
   draggableItemList,
   pageItemIds,
   onItemAdd,
   onPageItemMove,
+  onPageItemRemove,
   nItemsInPage
 }) =>
   <div>
-    <PageHeader>Page Builder</PageHeader>
+    <SubHeader>Form Builder</SubHeader>
+    <PageToolbar />
     <Row>
       <Col xs={12} sm={4} md={3}>
         <DraggableItemList
@@ -30,6 +33,7 @@ const FormBuilder = ({
           pageItemIds={pageItemIds}
           onItemAdd={onItemAdd}
           onPageItemMove={onPageItemMove}
+          onPageItemRemove={onPageItemRemove}
           nItemsInPage={nItemsInPage}
         />
       </Col>
@@ -41,6 +45,7 @@ FormBuilder.propTypes = {
   pageItemIds: PropTypes.array.isRequired,
   onItemAdd: PropTypes.func.isRequired,
   onPageItemMove: PropTypes.func.isRequired,
+  onPageItemRemove: PropTypes.func.isRequired,
   nItemsInPage: PropTypes.number.isRequired
 };
 

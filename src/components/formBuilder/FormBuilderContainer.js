@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import update from "immutability-helper";
 
-import { components } from "lib/test";
+import withLoading from "lib/withLoading";
+
 import FormBuilder from "components/formBuilder/FormBuilder";
 
-export default class FormBuilderContainer extends Component {
-  static defaultProps = {
-    draggableItemList: components
-  };
+class FormBuilderContainer extends Component {
   state = { pageItemIds: [] };
 
   render() {
     return (
       <FormBuilder
-        draggableItemList={this.props.draggableItemList}
+        draggableItemList={this.props.formItems}
         pageItemIds={this.state.pageItemIds}
         onItemAdd={this._onItemAdd}
         onPageItemMove={this._onPageItemMove}
+        onPageItemRemove={this._onPageItemRemove}
         nItemsInPage={this.state.pageItemIds.length}
       />
     );
@@ -41,4 +40,16 @@ export default class FormBuilderContainer extends Component {
       })
     );
   };
+
+  _onPageItemRemove = indexToRemove => {
+    this.setState(
+      update(this.state, {
+        pageItemIds: {
+          $splice: [[indexToRemove, 1]]
+        }
+      })
+    );
+  };
 }
+
+export default withLoading(FormBuilderContainer);

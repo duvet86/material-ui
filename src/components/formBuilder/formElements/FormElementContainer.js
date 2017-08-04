@@ -3,19 +3,36 @@ import { findDOMNode } from "react-dom";
 import { DropTarget, DragSource } from "react-dnd";
 import injectSheet from "react-jss";
 import Paper from "material-ui/Paper";
+import IconButton from "material-ui/IconButton";
+import CloseIcon from "material-ui/svg-icons/navigation/close";
 
-import { formItemMapping } from "lib/test";
+import formItemMapping from "lib/formItemMapping";
 import ItemTypes from "components/formBuilder/ItemTypes";
 
 const style = {
   formElement: {
     cursor: "pointer",
-    marginBottom: "5px"
+    marginBottom: "5px",
+    position: "relative"
   }
 };
 
 const paperStyle = {
-  padding: 10
+  padding: "10px",
+  margin: "5px"
+};
+
+const buttonStyle = {
+  position: "absolute",
+  right: "2%",
+  padding: 0,
+  height: "auto",
+  width: "auto"
+};
+
+const iconStyle = {
+  width: 20,
+  height: 20
 };
 
 const componentSource = {
@@ -67,16 +84,26 @@ const boxTarget = {
 };
 
 const FormElementContainer = ({
+  formItem: { component },
+  classes: { formElement },
   connectDragSource,
   connectDropTarget,
-  formItem: { component },
-  classes: { formElement }
+  onPageItemRemove
 }) =>
   connectDragSource(
     connectDropTarget(
       <div className={formElement}>
         <Paper style={paperStyle}>
-          {React.createElement(formItemMapping[component])}
+          <div>
+            <IconButton
+              style={buttonStyle}
+              iconStyle={iconStyle}
+              onTouchTap={onPageItemRemove}
+            >
+              <CloseIcon />
+            </IconButton>
+            {React.createElement(formItemMapping[component])}
+          </div>
         </Paper>
       </div>
     )

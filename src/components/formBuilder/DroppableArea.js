@@ -2,28 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 import injectSheet from "react-jss";
-import Paper from "material-ui/Paper";
 
 import ItemTypes from "components/formBuilder/ItemTypes";
 import FormElementContainer from "components/formBuilder/formElements/FormElementContainer";
 
 const style = {
   containerStyle: {
-    padding: "1rem",
-    minHeight: "411px",
+    border: "3px dashed #ddd",
+    minHeight: "435px",
     position: "relative"
   },
   textStyle: {
     position: "absolute",
-    top: "50%"
+    top: "12%",
+    left: "40%",
+    fontSize: "1.3em"
   }
 };
 
 const boxTarget = {
-  drop({ onItemAdd }, monitor) {
-    const { id, action } = monitor.getItem();
+  drop({ nItemsInPage, onItemAdd }, monitor) {
+    const { id, action, index } = monitor.getItem();
 
-    if (action === "UPDATE" || monitor.didDrop()) {
+    if (
+      action === "UPDATE" ||
+      monitor.didDrop() ||
+      nItemsInPage === index + 1 // if already dropped don't do it again
+    ) {
       return;
     }
     onItemAdd(id);
@@ -31,13 +36,14 @@ const boxTarget = {
 };
 
 const DroppableArea = ({
+  classes: { containerStyle, textStyle },
   canDrop,
   isOver,
   connectDropTarget,
   pageItemIds,
   draggableItemList,
   onPageItemMove,
-  classes: { containerStyle, textStyle }
+  onPageItemRemove
 }) => {
   const isActive = canDrop && isOver;
 
@@ -45,11 +51,12 @@ const DroppableArea = ({
   if (pageItemIds.length === 0) {
     componentList = (
       <div className={textStyle}>
-        {isActive ? "Release to drop" : "Drag a Component here"}
+        {isActive ? "Release to drop" : "Drag an item here"}
       </div>
     );
   } else {
     componentList = pageItemIds.map((elementId, index) => {
+      const boundEvent = () => onPageItemRemove(index);
       const item = draggableItemList.find(({ id }) => id === elementId);
       return (
         <FormElementContainer
@@ -57,6 +64,7 @@ const DroppableArea = ({
           index={index}
           formItem={item}
           onPageItemMove={onPageItemMove}
+          onPageItemRemove={boundEvent}
         />
       );
     });
@@ -64,9 +72,7 @@ const DroppableArea = ({
 
   return connectDropTarget(
     <div className={containerStyle}>
-      <Paper>
-        {componentList}
-      </Paper>
+      {componentList}
     </div>
   );
 };
@@ -77,7 +83,8 @@ DroppableArea.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
   canDrop: PropTypes.bool.isRequired,
-  onPageItemMove: PropTypes.func.isRequired
+  onPageItemMove: PropTypes.func.isRequired,
+  onPageItemRemove: PropTypes.func.isRequired
 };
 
 export default DropTarget(

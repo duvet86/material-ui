@@ -4,7 +4,6 @@ import injectSheet from "react-jss";
 
 const style = {
   subHeader: {
-    paddingTop: ".8em",
     textTransform: "uppercase",
     fontSize: "1.2em",
     fontWeight: 400

@@ -105,7 +105,7 @@ class LoginContainer extends Component {
           setLocalStorageToken(jwtToken);
           this.setState({
             isAuthenticated: true,
-            redirect: `/${jwtToken.appKey}`
+            redirect: `/${jwtToken.appKey}/`
           });
         }
       });
