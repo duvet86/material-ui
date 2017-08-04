@@ -5,9 +5,9 @@ import AppContainer from "components/app/AppContainer";
 
 const applicationListQueryOptions = {
   props: ({ ownProps, data: { loading, error, applicationList } }) => ({
-    isLoading: loading,
     applicationList,
-    error
+    error,
+    isLoading: loading
   })
 };
 

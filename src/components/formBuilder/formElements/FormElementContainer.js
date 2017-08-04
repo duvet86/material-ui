@@ -2,6 +2,7 @@ import React from "react";
 import { findDOMNode } from "react-dom";
 import { DropTarget, DragSource } from "react-dnd";
 import injectSheet from "react-jss";
+import Paper from "material-ui/Paper";
 
 import { formItemMapping } from "lib/test";
 import ItemTypes from "components/formBuilder/ItemTypes";
@@ -9,11 +10,12 @@ import ItemTypes from "components/formBuilder/ItemTypes";
 const style = {
   formElement: {
     cursor: "pointer",
-    padding: "5px",
-    borderRadius: "2px",
-    border: "#eee solid",
     marginBottom: "5px"
   }
+};
+
+const paperStyle = {
+  padding: 10
 };
 
 const componentSource = {
@@ -73,7 +75,9 @@ const FormElementContainer = ({
   connectDragSource(
     connectDropTarget(
       <div className={formElement}>
-        {React.createElement(formItemMapping[component])}
+        <Paper style={paperStyle}>
+          {React.createElement(formItemMapping[component])}
+        </Paper>
       </div>
     )
   );

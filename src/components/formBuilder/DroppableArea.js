@@ -2,23 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 import injectSheet from "react-jss";
+import Paper from "material-ui/Paper";
 
 import ItemTypes from "components/formBuilder/ItemTypes";
 import FormElementContainer from "components/formBuilder/formElements/FormElementContainer";
 
 const style = {
   containerStyle: {
-    border: "1px dashed #ddd",
     padding: "1rem",
     minHeight: "411px",
     position: "relative"
   },
   textStyle: {
     position: "absolute",
-    top: "50%",
-    height: "100px",
-    marginTop: "-50px",
-    width: "100%"
+    top: "50%"
   }
 };
 
@@ -44,13 +41,6 @@ const DroppableArea = ({
 }) => {
   const isActive = canDrop && isOver;
 
-  let backgroundColor = "#f8f8f8";
-  if (isActive) {
-    backgroundColor = "darkgreen";
-  } else if (canDrop) {
-    backgroundColor = "darkkhaki";
-  }
-
   let componentList;
   if (pageItemIds.length === 0) {
     componentList = (
@@ -73,8 +63,10 @@ const DroppableArea = ({
   }
 
   return connectDropTarget(
-    <div style={{ backgroundColor }} className={containerStyle}>
-      {componentList}
+    <div className={containerStyle}>
+      <Paper>
+        {componentList}
+      </Paper>
     </div>
   );
 };
