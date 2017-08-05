@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
 
-import { applicationListQuery } from "components/applicationsPage/graphqlQueries";
+import { applicationsListQuery } from "components/applicationsPage/graphqlQueries";
 import ApplicationList from "components/applicationsPage/ApplicationsList";
 
 const queryOptions = {
@@ -11,4 +11,4 @@ const queryOptions = {
   })
 };
 
-export default graphql(applicationListQuery, queryOptions)(ApplicationList);
+export default graphql(applicationsListQuery, queryOptions)(ApplicationList);

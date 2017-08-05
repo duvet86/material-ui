@@ -1,7 +1,6 @@
 import React from "react";
 import IconButton from "material-ui/IconButton";
 import IconMenu from "material-ui/IconMenu";
-
 import { white } from "material-ui/styles/colors";
 import AppsIcon from "material-ui/svg-icons/navigation/apps";
 
@@ -21,7 +20,7 @@ const ApplicationListMenu = ({ appList, match: { params: appkey } }) =>
       <LinkMenuItem
         key={index}
         selected={key === appkey.appKey}
-        to={`/${key}`}
+        to={`/${key}/`}
         label={label}
       />
     )}

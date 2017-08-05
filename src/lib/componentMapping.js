@@ -13,5 +13,15 @@ const help = asyncComponent(() => import("components/staticPages/Help"));
 const applications = asyncComponent(() =>
   import("components/applicationsPage/ApplicationsPageWithData")
 );
+const roles = asyncComponent(() =>
+  import("components/rolesPage/RolesListWithData")
+);
 
-export default { dashBoard, channelsList, formBuilder, help, applications };
+export default {
+  dashBoard,
+  channelsList,
+  formBuilder,
+  help,
+  applications,
+  roles
+};

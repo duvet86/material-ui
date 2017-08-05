@@ -1,18 +1,13 @@
 import { gql } from "react-apollo";
 
-const applicationListQuery = gql`
+const rolesListQuery = gql`
   query roles {
     roles {
+      id
       name
       description
-      startApp {
-        label
-      }
-      appList {
-        label
-      }
     }
   }
 `;
 
-export { applicationListQuery };
+export { rolesListQuery };

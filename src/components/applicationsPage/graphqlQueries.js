@@ -1,9 +1,9 @@
 import { gql } from "react-apollo";
 
-const applicationListQuery = gql`
+const applicationsListQuery = gql`
   query applicationList {
     label
   }
 `;
 
-export { applicationListQuery };
+export { applicationsListQuery };

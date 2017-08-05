@@ -55,7 +55,7 @@ const ApplicationLabelLink = ({
   appKey,
   appLabel
 }) =>
-  <Link className={linkContainer} to={`/${appKey}`}>
+  <Link className={linkContainer} to={`/${appKey}/`}>
     <span className={spanStyle} />
     <span className={label}>
       {appLabel}
