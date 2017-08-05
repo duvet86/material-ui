@@ -4,8 +4,8 @@ import { graphql } from "react-apollo";
 import { Redirect } from "react-router-dom";
 
 import { setLocalStorageToken } from "lib/localStorageAPI";
-import { loginMutation } from "components/login/graphqlQueries";
-import Login from "components/login/Login";
+import { loginMutation } from "components/appFrame/login/graphqlQueries";
+import Login from "components/appFrame/login/Login";
 
 class LoginContainer extends Component {
   constructor(props) {

@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import { deleteLocalStorageToken } from "lib/localStorageAPI";
 
-import Logout from "components/logout/Logout";
+import Logout from "components/appFrame/logout/Logout";
 
 class LogoutContainer extends Component {
   constructor(props) {

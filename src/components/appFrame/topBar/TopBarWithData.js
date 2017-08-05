@@ -2,8 +2,8 @@ import { graphql } from "react-apollo";
 
 import { getUserIdFromToken } from "lib/localStorageAPI";
 
-import { userByIdQuery } from "components/topBar/graphqlQueries";
-import TopBar from "components/topBar/TopBar";
+import { userByIdQuery } from "components/appFrame/topBar/graphqlQueries";
+import TopBar from "components/appFrame/topBar/TopBar";
 
 const queryOptions = {
   options: () => ({

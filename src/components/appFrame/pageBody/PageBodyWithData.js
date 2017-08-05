@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 
-import { routesByAppKeyQuery } from "components/pageBody/graphqlQueries";
-import PageBody from "components/pageBody/PageBody";
+import { routesByAppKeyQuery } from "components/appFrame/pageBody/graphqlQueries";
+import PageBody from "components/appFrame/pageBody/PageBody";
 
 export default graphql(routesByAppKeyQuery, {
   options: ({ appKey }) => ({

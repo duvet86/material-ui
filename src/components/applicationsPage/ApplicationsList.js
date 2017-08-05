@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { List } from "material-ui/List";
 
-import Application from "components/applicationList/Application";
+import Application from "components/applicationsPage/Application";
 
 const ApplicationList = ({ applications, handleArchiveApp }) => {
   const items = applications.map(app => {

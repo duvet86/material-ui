@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 
-import { applicationListQuery } from "components/applicationList/graphqlQueries";
-import ApplicationList from "components/applicationList/ApplicationList";
+import { applicationListQuery } from "components/applicationsPage/graphqlQueries";
+import ApplicationList from "components/applicationsPage/ApplicationsList";
 
 const queryOptions = {
   props: ({ ownProps, data: { loading, error, applicationList } }) => ({

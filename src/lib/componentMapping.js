@@ -10,8 +10,8 @@ const formBuilder = asyncComponent(() =>
   import("components/formBuilder/FormBuilderWithData")
 );
 const help = asyncComponent(() => import("components/staticPages/Help"));
-const applicationList = asyncComponent(() =>
-  import("components/applicationList/ApplicationListWithData")
+const applications = asyncComponent(() =>
+  import("components/applicationsPage/ApplicationsPageWithData")
 );
 
-export default { dashBoard, channelsList, formBuilder, help, applicationList };
+export default { dashBoard, channelsList, formBuilder, help, applications };

@@ -2,9 +2,9 @@ import React from "react";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
-import TopBarWithData from "components/topBar/TopBarWithData";
-import LeftDrawerWithData from "components/leftDrawer/LeftDrawerWithData";
-import PageBodyWithData from "components/pageBody/PageBodyWithData";
+import TopBarWithData from "components/appFrame/topBar/TopBarWithData";
+import LeftDrawerWithData from "components/appFrame/leftDrawer/LeftDrawerWithData";
+import PageBodyWithData from "components/appFrame/pageBody/PageBodyWithData";
 
 const App = ({
   muiTheme,

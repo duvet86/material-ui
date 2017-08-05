@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 
-import { menuByAppKeyQuery } from "components/leftDrawer/graphqlQueries";
-import LeftDrawer from "components/leftDrawer/LeftDrawer";
+import { menuByAppKeyQuery } from "components/appFrame/leftDrawer/graphqlQueries";
+import LeftDrawer from "components/appFrame/leftDrawer/LeftDrawer";
 
 export default graphql(menuByAppKeyQuery, {
   options: ({ appKey }) => ({

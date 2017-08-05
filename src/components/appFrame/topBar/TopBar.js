@@ -7,9 +7,9 @@ import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import withLoading from "lib/withLoading";
 
 import ApplicationLabelLink from "components/core/ApplicationLabelLink";
-import ApplicationListMenu from "components/topBarMenu/ApplicationListMenu";
-import UserMenu from "components/topBarMenu/UserMenu";
-import NotificationMenu from "components/topBarMenu/NotificationMenu";
+import ApplicationListMenu from "components/appFrame/topBar/topBarMenu/ApplicationListMenu";
+import UserMenu from "components/appFrame/topBar/topBarMenu/UserMenu";
+import NotificationMenu from "components/appFrame/topBar/topBarMenu/NotificationMenu";
 
 const TopBar = ({
   user: { name, role: { appList } },

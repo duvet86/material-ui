@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import muiTheme from "lib/muiTheme";
 import withLoading from "lib/withLoading";
 
-import App from "components/app/App";
+import App from "components/appFrame/app/App";
 import NotFoundRoute from "components/routes/NotFoundRoute";
 
 class AppContainer extends Component {
