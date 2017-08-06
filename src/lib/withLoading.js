@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Row, Col } from "react-flexbox-grid";
 
 import LoadingSpinner from "components/core/LoadingSpinner";
 import AnimateContent from "components/core/AnimateContent";
@@ -9,9 +10,15 @@ export default function withLoading(WrappedComponent, showSpinner = false) {
       const { isLoading, error } = this.props;
       if (error) {
         return (
-          <h3>
-            {error ? JSON.stringify(error) : "Error! Component failed to load."}
-          </h3>
+          <Row>
+            <Col xs={12} md={6} mdOffset={4}>
+              <h3>
+                {error
+                  ? JSON.stringify(error)
+                  : "Error! Component failed to load."}
+              </h3>
+            </Col>
+          </Row>
         );
       }
       if (isLoading) {

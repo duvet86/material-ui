@@ -1,13 +1,36 @@
 import { gql } from "react-apollo";
 
-const rolesListQuery = gql`
-  query roles {
-    roles {
-      id
-      name
-      description
-    }
+const roleInfoFragment = gql`
+  fragment roleInfo on Role {
+    id
+    name
+    description
   }
 `;
 
-export { rolesListQuery };
+const rolesListQuery = gql`
+  query roles {
+    roles {
+      ...roleInfo
+    }
+  }
+  ${roleInfoFragment}
+`;
+
+const roleByIdQuery = gql`
+  query roleById($roleId: ID!) {
+    roleById(id: $roleId) {
+      ...roleInfo
+      appList {
+        id
+        label
+      }
+      startApp {
+        id
+      }
+    }
+  }
+  ${roleInfoFragment}
+`;
+
+export { rolesListQuery, roleByIdQuery };

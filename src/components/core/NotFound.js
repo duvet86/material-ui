@@ -1,13 +1,14 @@
 import React from "react";
-import RaisedButton from "material-ui/RaisedButton";
 import { Row, Col } from "react-flexbox-grid";
+import RaisedButton from "material-ui/RaisedButton";
+import Paper from "material-ui/Paper";
 import HomeIcon from "material-ui/svg-icons/action/home";
 import HelpIcon from "material-ui/svg-icons/action/help";
 
 import PageHeader from "components/core/PageHeader";
 
 const NotFound = () =>
-  <div>
+  <Paper style={{ padding: "60px" }}>
     <Row center="xs">
       <Col xs>
         <PageHeader>404 Not Found</PageHeader>
@@ -30,6 +31,6 @@ const NotFound = () =>
         />
       </Col>
     </Row>
-  </div>;
+  </Paper>;
 
 export default NotFound;

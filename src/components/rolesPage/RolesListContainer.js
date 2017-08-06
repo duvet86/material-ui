@@ -13,9 +13,14 @@ class RolesListContainer extends Component {
   };
 
   render() {
-    const { roles } = this.props;
+    const { roles, location } = this.props;
+
     return (
-      <RolesList roles={roles} handleArchiveRole={this._handleArchiveRole} />
+      <RolesList
+        roles={roles}
+        handleArchiveRole={this._handleArchiveRole}
+        location={location}
+      />
     );
   }
 

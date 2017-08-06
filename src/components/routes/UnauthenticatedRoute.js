@@ -12,7 +12,7 @@ const UnauthenticatedRoute = ({ component, ...props }) => {
       ? React.createElement(component, props)
       : <RedirectToStartPageWithData location={props.location} />;
 
-  return <Route {...props} render={boundRender} />;
+  return <Route exact {...props} render={boundRender} />;
 };
 
 UnauthenticatedRoute.propTypes = {

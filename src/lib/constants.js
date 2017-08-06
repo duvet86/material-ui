@@ -1,5 +1,8 @@
-const SSL = "s";
-const URL = "//sleepy-plains-58280.herokuapp.com";
+const SSL = process.env.NODE_ENV === "production" ? "s" : "";
+const URL =
+  process.env.NODE_ENV === "production"
+    ? "//sleepy-plains-58280.herokuapp.com"
+    : "//localhost:8080";
 
 export default {
   TOKEN_NAME: "jwt_token",

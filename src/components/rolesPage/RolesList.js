@@ -14,9 +14,9 @@ import TextField from "material-ui/TextField";
 import FilterIcon from "material-ui/svg-icons/content/filter-list";
 import RefreshIcon from "material-ui/svg-icons/navigation/refresh";
 
-import RoleRecord from "components/rolesPage/RoleRecord";
+import Role from "components/rolesPage/Role";
 
-const RolesList = ({ roles, handleArchiveRole }) =>
+const RolesList = ({ roles, handleArchiveRole, location }) =>
   <Paper>
     <CardActions style={{ position: "absolute", right: 0 }}>
       <FlatButton label="Add Filter" primary={true} icon={<FilterIcon />} />
@@ -46,10 +46,11 @@ const RolesList = ({ roles, handleArchiveRole }) =>
         {roles.map(role => {
           const boundEvent = () => handleArchiveRole(role.id);
           return (
-            <RoleRecord
+            <Role
               key={role.id}
               role={role}
               handleArchiveRole={boundEvent}
+              location={location}
             />
           );
         })}

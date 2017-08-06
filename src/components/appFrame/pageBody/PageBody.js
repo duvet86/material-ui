@@ -11,7 +11,7 @@ import NotFoundRoute from "components/routes/NotFoundRoute";
 const PageBody = ({ style, routes }) =>
   <Grid fluid style={style}>
     <Switch>
-      {routes.map(({ id, location, component }) =>
+      {routes.map(({ id, location, component, editComponent }) =>
         <Route
           key={id}
           exact

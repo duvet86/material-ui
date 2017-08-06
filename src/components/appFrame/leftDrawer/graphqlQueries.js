@@ -5,7 +5,6 @@ const childrenInfoFragment = gql`
     id
     location
     label
-    order
   }
 `;
 

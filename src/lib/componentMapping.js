@@ -16,6 +16,9 @@ const applications = asyncComponent(() =>
 const roles = asyncComponent(() =>
   import("components/rolesPage/RolesListWithData")
 );
+const editRole = asyncComponent(() =>
+  import("components/rolesPage/EditRoleWithData")
+);
 
 export default {
   dashBoard,
@@ -23,5 +26,6 @@ export default {
   formBuilder,
   help,
   applications,
-  roles
+  roles,
+  editRole
 };
