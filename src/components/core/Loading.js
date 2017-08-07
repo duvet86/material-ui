@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LoadingSpinner from "components/core/LoadingSpinner";
+import Spinner from "components/core/Spinner";
 
 const Loading = ({ isLoading, error, pastDelay }) => {
   if (error) {
@@ -11,7 +11,7 @@ const Loading = ({ isLoading, error, pastDelay }) => {
     );
   }
   if (isLoading) {
-    return pastDelay ? <LoadingSpinner /> : null;
+    return pastDelay ? <Spinner /> : null;
   }
 
   return null;

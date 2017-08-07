@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Paper from "material-ui/Paper";
 
 import withLoading from "lib/withLoading";
 
@@ -17,14 +18,14 @@ class ChannelListContainer extends Component {
   render() {
     const { channels } = this.props;
     return (
-      <div>
+      <Paper style={{ padding: "25px" }}>
         <PageHeader>Channel List</PageHeader>
         <AddChannelContainer />
         <ChannelList
           channels={channels}
           handleDeleteChannel={this._handleDeleteChannel}
         />
-      </div>
+      </Paper>
     );
   }
 

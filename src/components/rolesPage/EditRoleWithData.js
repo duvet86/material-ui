@@ -14,7 +14,7 @@ const queryOptions = {
     data: { loading, error, roleById }
   }) => ({
     isLoading: loading,
-    role: roleById,
+    initRole: roleById,
     error,
     path: utility.backOfAToken(pathname)
   })

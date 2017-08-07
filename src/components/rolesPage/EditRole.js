@@ -14,8 +14,9 @@ import AppListSelectWithData from "components/rolesPage/appListSelect/AppListSel
 const RoleRecord = ({
   role: { name, description, appList, startApp: { id } },
   path,
+  handleDescriptionChange,
   handleAppListChange,
-  selectedValueIds
+  handleStartAppChange
 }) =>
   <Card>
     <CardActions style={{ position: "absolute", right: "0" }}>
@@ -43,12 +44,15 @@ const RoleRecord = ({
             multiLine={true}
             fullWidth={true}
             defaultValue={description}
+            onChange={handleDescriptionChange}
           />
         </div>
         <div>
           <AppListSelectWithData
-            initAppListValueIds={appList.map(({ id }) => id)}
-            initStartAppValueId={id}
+            appListValueIds={appList.map(({ id }) => id)}
+            startAppValueId={id}
+            handleAppListChange={handleAppListChange}
+            handleStartAppChange={handleStartAppChange}
           />
         </div>
       </form>
@@ -64,7 +68,11 @@ RoleRecord.propTypes = {
   role: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  path: PropTypes.string.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  handleAppListChange: PropTypes.func.isRequired,
+  handleStartAppChange: PropTypes.func.isRequired
 };
 
 export default RoleRecord;
