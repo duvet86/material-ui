@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 
-import { applicationListQuery } from "components/core/appListMultiSelect/graphqlQueries";
-import AppListSelect from "components/core/appListMultiSelect/AppListSelect";
+import { applicationListQuery } from "components/rolesPage/appListSelect/graphqlQueries";
+import AppListSelect from "components/rolesPage/appListSelect/AppListSelect";
 
 const applicationListQueryOptions = {
   props: ({ ownProps, data: { loading, error, applicationList } }) => ({

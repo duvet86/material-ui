@@ -9,14 +9,13 @@ import ListIcon from "material-ui/svg-icons/action/list";
 import DeleteIcon from "material-ui/svg-icons/action/delete";
 import SaveIcon from "material-ui/svg-icons/content/save";
 
-import withLoading from "lib/withLoading";
-
-import AppListSelectWithData from "components/core/appListMultiSelect/AppListSelectWithData";
-import AppListSelect from "components/core/appListMultiSelect/AppListSelect";
+import AppListSelectWithData from "components/rolesPage/appListSelect/AppListSelectWithData";
 
 const RoleRecord = ({
   role: { name, description, appList, startApp: { id } },
-  path
+  path,
+  handleAppListChange,
+  selectedValueIds
 }) =>
   <Card>
     <CardActions style={{ position: "absolute", right: "0" }}>
@@ -48,16 +47,8 @@ const RoleRecord = ({
         </div>
         <div>
           <AppListSelectWithData
-            appSelectedIds={appList.map(({ id }) => id)}
-            floatingLabelText="Applications accesible by this role"
-            multiple={true}
-          />
-        </div>
-        <div>
-          <AppListSelect
-            applicationList={appList}
-            appSelectedIds={id}
-            floatingLabelText="Default Application accessed after login"
+            initAppListValueIds={appList.map(({ id }) => id)}
+            initStartAppValueId={id}
           />
         </div>
       </form>
@@ -76,4 +67,4 @@ RoleRecord.propTypes = {
   }).isRequired
 };
 
-export default withLoading(RoleRecord);
+export default RoleRecord;

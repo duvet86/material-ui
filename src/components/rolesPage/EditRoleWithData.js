@@ -3,7 +3,7 @@ import { graphql } from "react-apollo";
 import utility from "lib/utility";
 
 import { roleByIdQuery } from "components/rolesPage/graphqlQueries";
-import EditRole from "components/rolesPage/EditRole";
+import EditRoleContainer from "components/rolesPage/EditRoleContainer";
 
 const queryOptions = {
   options: ({ match: { params: { id } } }) => ({
@@ -20,4 +20,4 @@ const queryOptions = {
   })
 };
 
-export default graphql(roleByIdQuery, queryOptions)(EditRole);
+export default graphql(roleByIdQuery, queryOptions)(EditRoleContainer);
