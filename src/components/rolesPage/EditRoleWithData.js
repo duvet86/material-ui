@@ -1,8 +1,11 @@
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 
 import utility from "lib/utility";
 
-import { roleByIdQuery } from "components/rolesPage/graphqlQueries";
+import {
+  roleByIdQuery,
+  updateRoleMutation
+} from "components/rolesPage/graphqlQueries";
 import EditRoleContainer from "components/rolesPage/EditRoleContainer";
 
 const queryOptions = {
@@ -20,4 +23,9 @@ const queryOptions = {
   })
 };
 
-export default graphql(roleByIdQuery, queryOptions)(EditRoleContainer);
+const makeQuery = compose(
+  graphql(updateRoleMutation, { name: "updateRoleMutation" }),
+  graphql(roleByIdQuery, queryOptions)
+);
+
+export default makeQuery(EditRoleContainer);

@@ -23,7 +23,6 @@ const roleByIdQuery = gql`
       ...roleInfo
       appList {
         id
-        label
       }
       startApp {
         id
@@ -33,14 +32,19 @@ const roleByIdQuery = gql`
   ${roleInfoFragment}
 `;
 
-const setStartAppForRoleMutation = gql`
-  mutation setStartAppForRole($roleId: ID!, $startAppId: ID!) {
-    setStartAppForRole(roleId: $roleId, startAppId: $startAppId) {
+const updateRoleMutation = gql`
+  mutation updateRole($roleId: ID!, $payload: RoleInput!) {
+    updateRole(roleId: $roleId, payload: $payload) {
+      ...roleInfo
+      appList {
+        id
+      }
       startApp {
         id
       }
     }
   }
+  ${roleInfoFragment}
 `;
 
-export { rolesListQuery, roleByIdQuery, setStartAppForRoleMutation };
+export { rolesListQuery, roleByIdQuery, updateRoleMutation };

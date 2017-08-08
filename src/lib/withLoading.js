@@ -11,30 +11,22 @@ export default function withLoading(WrappedComponent, showSpinner = false) {
 
       if (error) {
         return (
-          <Row>
-            <Col xs={12}>
-              <Row center="xs">
-                <Col xs={6}>
-                  <h3>
-                    {error
-                      ? JSON.stringify(error)
-                      : "Error! Component failed to load."}
-                  </h3>
-                </Col>
-              </Row>
+          <Row center="xs">
+            <Col xs={6}>
+              <h3>
+                {error
+                  ? JSON.stringify(error)
+                  : "Error! Component failed to load."}
+              </h3>
             </Col>
           </Row>
         );
       }
       if (isLoading) {
         return showSpinner
-          ? <Row>
-              <Col xs={12}>
-                <Row center="xs">
-                  <Col xs={6}>
-                    <Spinner />
-                  </Col>
-                </Row>
+          ? <Row center="xs">
+              <Col xs={6}>
+                <Spinner />
               </Col>
             </Row>
           : null;

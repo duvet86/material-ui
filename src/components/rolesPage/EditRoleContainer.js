@@ -9,11 +9,13 @@ import EditRole from "components/rolesPage/EditRole";
 class EditRoleContainer extends Component {
   static propTypes = {
     initRole: PropTypes.object.isRequired,
-    path: PropTypes.string.isRequired
+    path: PropTypes.string.isRequired,
+    updateRoleMutation: PropTypes.func.isRequired
   };
 
   state = {
-    role: this.props.initRole
+    role: this.props.initRole,
+    isLoadingRole: false
   };
 
   render() {
@@ -26,6 +28,8 @@ class EditRoleContainer extends Component {
         handleDescriptionChange={this._handleDescriptionChange}
         handleAppListChange={this._handleAppListChange}
         handleStartAppChange={this._handleStartAppChange}
+        handleSubmit={this._handleSubmit}
+        isLoadingRole={this.state.isLoadingRole}
       />
     );
   }
@@ -56,6 +60,46 @@ class EditRoleContainer extends Component {
         }
       })
     );
+
+  _handleSubmit = event => {
+    event.preventDefault();
+
+    this.setState({
+      isLoadingRole: true
+    });
+
+    const { updateRoleMutation } = this.props;
+    const {
+      id: roleId,
+      name,
+      description,
+      appList,
+      startApp: { id }
+    } = this.state.role;
+
+    const variables = {
+      roleId,
+      payload: {
+        name,
+        description,
+        appList: appList.map(({ id }) => id),
+        startApp: id
+      }
+    };
+
+    updateRoleMutation({
+      variables
+    })
+      .then(({ data }) => {
+        console.log("Role Updated.", data);
+        this.setState({
+          isLoadingRole: false
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 }
 
 export default withLoading(EditRoleContainer);

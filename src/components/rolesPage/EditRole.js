@@ -5,6 +5,8 @@ import { Card, CardActions, CardTitle, CardText } from "material-ui/Card";
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
+import CircularProgress from "material-ui/CircularProgress";
+
 import ListIcon from "material-ui/svg-icons/action/list";
 import DeleteIcon from "material-ui/svg-icons/action/delete";
 import SaveIcon from "material-ui/svg-icons/content/save";
@@ -16,7 +18,9 @@ const RoleRecord = ({
   path,
   handleDescriptionChange,
   handleAppListChange,
-  handleStartAppChange
+  handleStartAppChange,
+  handleSubmit,
+  isLoadingRole
 }) =>
   <Card>
     <CardActions style={{ position: "absolute", right: "0" }}>
@@ -35,8 +39,8 @@ const RoleRecord = ({
       />
     </CardActions>
     <CardTitle title={`Edit Role: ${name}`} />
-    <CardText>
-      <form>
+    <form onSubmit={handleSubmit}>
+      <CardText>
         <div>
           <TextField
             hintText="Description"
@@ -45,6 +49,7 @@ const RoleRecord = ({
             fullWidth={true}
             defaultValue={description}
             onChange={handleDescriptionChange}
+            disabled={isLoadingRole}
           />
         </div>
         <div>
@@ -53,15 +58,22 @@ const RoleRecord = ({
             startAppValueId={id}
             handleAppListChange={handleAppListChange}
             handleStartAppChange={handleStartAppChange}
+            disabled={isLoadingRole}
           />
         </div>
-      </form>
-    </CardText>
-    <CardActions
-      style={{ backgroundColor: "rgb(232, 232, 232)", textAlign: "right" }}
-    >
-      <RaisedButton label="Save" primary={true} icon={<SaveIcon />} />
-    </CardActions>
+      </CardText>
+      <CardActions
+        style={{ backgroundColor: "rgb(232, 232, 232)", textAlign: "right" }}
+      >
+        <RaisedButton
+          label="Save"
+          type="submit"
+          primary={true}
+          icon={isLoadingRole ? <CircularProgress size={25} /> : <SaveIcon />}
+          disabled={isLoadingRole}
+        />
+      </CardActions>
+    </form>
   </Card>;
 
 RoleRecord.propTypes = {
@@ -72,7 +84,8 @@ RoleRecord.propTypes = {
   path: PropTypes.string.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleAppListChange: PropTypes.func.isRequired,
-  handleStartAppChange: PropTypes.func.isRequired
+  handleStartAppChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default RoleRecord;

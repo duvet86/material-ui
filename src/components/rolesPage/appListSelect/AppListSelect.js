@@ -10,7 +10,8 @@ const AppListSelect = ({
   appListValueIds,
   startAppValueId,
   handleAppListChange,
-  handleStartAppChange
+  handleStartAppChange,
+  disabled
 }) => {
   function _appListMenuItems(valuesIds) {
     return applicationList.map(({ id, label }) =>
@@ -30,11 +31,7 @@ const AppListSelect = ({
     );
 
     return narrowedAppList.map(({ id, label }) =>
-      <MenuItem
-        key={id}
-        value={id}
-        primaryText={label}
-      />
+      <MenuItem key={id} value={id} primaryText={label} />
     );
   }
 
@@ -48,6 +45,7 @@ const AppListSelect = ({
           multiple={true}
           fullWidth={true}
           onChange={handleAppListChange}
+          disabled={disabled}
         >
           {_appListMenuItems(appListValueIds)}
         </SelectField>
@@ -59,6 +57,7 @@ const AppListSelect = ({
           value={startAppValueId}
           fullWidth={true}
           onChange={handleStartAppChange}
+          disabled={disabled}
         >
           {_startAppMenuItems(startAppValueId)}
         </SelectField>
@@ -72,7 +71,8 @@ AppListSelect.propTypes = {
   appListValueIds: PropTypes.array.isRequired,
   startAppValueId: PropTypes.string.isRequired,
   handleAppListChange: PropTypes.func.isRequired,
-  handleStartAppChange: PropTypes.func.isRequired
+  handleStartAppChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
 };
 
-export default withLoading(AppListSelect);
+export default withLoading(AppListSelect, true);
