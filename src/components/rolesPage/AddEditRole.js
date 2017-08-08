@@ -14,7 +14,13 @@ import SaveIcon from "material-ui/svg-icons/content/save";
 import AppListSelectWithData from "components/rolesPage/appListSelect/AppListSelectWithData";
 
 const AddEditRole = ({
-  role: { name, description, appList, startApp: { id } },
+  role: {
+    id: roleId,
+    name,
+    description,
+    appList,
+    startApp: { id: startAppId }
+  },
   path,
   handleNameChange,
   handleDescriptionChange,
@@ -24,7 +30,7 @@ const AddEditRole = ({
   isLoadingRole
 }) => {
   const isSubmitDisbled =
-    !name || !description || appList.length === 0 || id == null;
+    !name || !description || appList.length === 0 || startAppId == null;
 
   return (
     <Card>
@@ -43,7 +49,7 @@ const AddEditRole = ({
           icon={<DeleteIcon />}
         />
       </CardActions>
-      <CardTitle title="Edit Role" />
+      <CardTitle title={roleId ? "Edit Role" : "Add Role"} />
       <form onSubmit={handleSubmit}>
         <CardText>
           <div>
@@ -70,7 +76,7 @@ const AddEditRole = ({
           <div>
             <AppListSelectWithData
               appListValueIds={appList.map(({ id }) => id)}
-              startAppValueId={id}
+              startAppValueId={startAppId}
               handleAppListChange={handleAppListChange}
               handleStartAppChange={handleStartAppChange}
               disabled={isLoadingRole}
@@ -96,7 +102,11 @@ const AddEditRole = ({
 AddEditRole.propTypes = {
   role: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired,
+    appList: PropTypes.array.isRequired,
+    startApp: PropTypes.shape({
+      id: PropTypes.string
+    }).isRequired
   }).isRequired,
   path: PropTypes.string.isRequired,
   handleNameChange: PropTypes.func.isRequired,

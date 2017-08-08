@@ -71,9 +71,9 @@ const AppListSelect = ({
 AppListSelect.propTypes = {
   applicationList: PropTypes.array.isRequired,
   appListValueIds: PropTypes.array.isRequired,
-  startAppValueId: PropTypes.string.isRequired,
   handleAppListChange: PropTypes.func.isRequired,
   handleStartAppChange: PropTypes.func.isRequired,
+  startAppValueId: PropTypes.string,
   disabled: PropTypes.bool
 };
 

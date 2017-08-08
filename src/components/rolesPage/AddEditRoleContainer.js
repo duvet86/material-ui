@@ -8,7 +8,7 @@ import AddEditRole from "components/rolesPage/AddEditRole";
 
 class EditRoleContainer extends Component {
   static propTypes = {
-    initRole: PropTypes.object.isRequired,
+    initRole: PropTypes.object,
     path: PropTypes.string.isRequired,
     updateRoleMutation: PropTypes.func.isRequired
   };
@@ -67,7 +67,9 @@ class EditRoleContainer extends Component {
           update(this.state, {
             role: {
               appList: { $set: appIds },
-              startApp: { $set: { id: appIds[0].id } }
+              startApp: {
+                id: { $set: appIds[0].id }
+              }
             }
           })
         )

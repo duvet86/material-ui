@@ -21,13 +21,6 @@ const PageBody = ({ style, routes }) =>
       )}
       <Route
         exact
-        path="/:appKey/roles/new"
-        component={asyncComponent(() =>
-          import("components/rolesPage/AddEditRoleContainer")
-        )}
-      />
-      <Route
-        exact
         path="/:appKey/settings"
         component={asyncComponent(() =>
           import("components/staticPages/Settings")

@@ -19,6 +19,9 @@ const roles = asyncComponent(() =>
 const editRole = asyncComponent(() =>
   import("components/rolesPage/EditRoleWithData")
 );
+const addRole = asyncComponent(() =>
+  import("components/rolesPage/AddEditRoleContainer")
+);
 
 export default {
   dashBoard,
@@ -27,5 +30,6 @@ export default {
   help,
   applications,
   roles,
-  editRole
+  editRole,
+  addRole
 };
