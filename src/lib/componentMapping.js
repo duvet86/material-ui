@@ -20,7 +20,7 @@ const editRole = asyncComponent(() =>
   import("components/rolesPage/EditRoleWithData")
 );
 const addRole = asyncComponent(() =>
-  import("components/rolesPage/AddEditRoleContainer")
+  import("components/rolesPage/AddRoleWithData")
 );
 
 export default {

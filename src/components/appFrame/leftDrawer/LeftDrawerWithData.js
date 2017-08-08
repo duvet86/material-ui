@@ -7,10 +7,13 @@ export default graphql(menuByAppKeyQuery, {
   options: ({ appKey }) => ({
     variables: { appKey: appKey }
   }),
-  props: ({ ownProps, data: { loading, error, applicationByAppKey } }) => ({
+  props: ({
+    ownProps: { appKey },
+    data: { loading, error, applicationByAppKey }
+  }) => ({
     isLoading: loading,
     menu: applicationByAppKey && applicationByAppKey.menu,
-    appKey: ownProps.appKey,
+    appKey: appKey,
     error
   })
 })(LeftDrawer);

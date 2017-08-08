@@ -11,6 +11,9 @@ import ListIcon from "material-ui/svg-icons/action/list";
 import DeleteIcon from "material-ui/svg-icons/action/delete";
 import SaveIcon from "material-ui/svg-icons/content/save";
 
+import { backOfAToken } from "lib/utility";
+
+import ActionFeedback from "components/core/ActionFeedback";
 import AppListSelectWithData from "components/rolesPage/appListSelect/AppListSelectWithData";
 
 const AddEditRole = ({
@@ -21,13 +24,15 @@ const AddEditRole = ({
     appList,
     startApp: { id: startAppId }
   },
-  path,
+  location: { pathname },
   handleNameChange,
   handleDescriptionChange,
   handleAppListChange,
   handleStartAppChange,
   handleSubmit,
-  isLoadingRole
+  isLoadingRole,
+  isSnackbarOpen,
+  snackbarMessage
 }) => {
   const isSubmitDisbled =
     !name || !description || appList.length === 0 || startAppId == null;
@@ -36,18 +41,13 @@ const AddEditRole = ({
     <Card>
       <CardActions style={{ position: "absolute", right: "0" }}>
         <FlatButton
-          containerElement={<Link to={path} />}
+          containerElement={<Link to={backOfAToken(pathname)} />}
           label="List"
           primary={true}
           icon={<ListIcon />}
           style={{ overflow: "visible" }}
         />
-        <FlatButton
-          label="Delete"
-          secondary={true}
-          disabled={true}
-          icon={<DeleteIcon />}
-        />
+        <FlatButton label="Delete" secondary={true} icon={<DeleteIcon />} />
       </CardActions>
       <CardTitle title={roleId ? "Edit Role" : "Add Role"} />
       <form onSubmit={handleSubmit}>
@@ -95,25 +95,28 @@ const AddEditRole = ({
           />
         </CardActions>
       </form>
+      <ActionFeedback isOpen={isSnackbarOpen} message={snackbarMessage} />
     </Card>
   );
 };
 
 AddEditRole.propTypes = {
   role: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    description: PropTypes.string,
     appList: PropTypes.array.isRequired,
     startApp: PropTypes.shape({
       id: PropTypes.string
     }).isRequired
   }).isRequired,
-  path: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
   handleNameChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleAppListChange: PropTypes.func.isRequired,
   handleStartAppChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  isSnackbarOpen: PropTypes.bool.isRequired,
+  snackbarMessage: PropTypes.string.isRequired
 };
 
 export default AddEditRole;

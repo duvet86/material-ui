@@ -20,9 +20,6 @@ const TopBar = ({
 }) =>
   <AppBar
     style={{ position: "fixed", top: 0 }}
-    iconStyleLeft={{ marginTop: 0 }}
-    iconStyleRight={{ margin: 0 }}
-    titleStyle={{ height: "initial", lineHeight: "46px" }}
     title={<ApplicationLabelLink appKey={appKey} appLabel={appLabel} />}
     onLeftIconButtonTouchTap={handleToggle}
     iconElementLeft={

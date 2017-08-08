@@ -1,7 +1,5 @@
 import { graphql, compose } from "react-apollo";
 
-import utility from "lib/utility";
-
 import {
   roleByIdQuery,
   updateRoleMutation
@@ -12,19 +10,15 @@ const queryOptions = {
   options: ({ match: { params: { id } } }) => ({
     variables: { roleId: id }
   }),
-  props: ({
-    ownProps: { location: { pathname } },
-    data: { loading, error, roleById }
-  }) => ({
+  props: ({ ownProps, data: { loading, error, roleById } }) => ({
     isLoading: loading,
     initRole: roleById,
-    error,
-    path: utility.backOfAToken(pathname)
+    error
   })
 };
 
 const makeQuery = compose(
-  graphql(updateRoleMutation, { name: "updateRoleMutation" }),
+  graphql(updateRoleMutation),
   graphql(roleByIdQuery, queryOptions)
 );
 

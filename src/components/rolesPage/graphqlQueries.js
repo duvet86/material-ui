@@ -47,4 +47,24 @@ const updateRoleMutation = gql`
   ${roleInfoFragment}
 `;
 
-export { rolesListQuery, roleByIdQuery, updateRoleMutation };
+const createRoleMutation = gql`
+  mutation createRole($payload: RoleInput!) {
+    createRole(payload: $payload) {
+      ...roleInfo
+      appList {
+        id
+      }
+      startApp {
+        id
+      }
+    }
+  }
+  ${roleInfoFragment}
+`;
+
+export {
+  rolesListQuery,
+  roleByIdQuery,
+  updateRoleMutation,
+  createRoleMutation
+};

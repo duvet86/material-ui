@@ -6,29 +6,31 @@ import withLoading from "lib/withLoading";
 
 import AddEditRole from "components/rolesPage/AddEditRole";
 
-class EditRoleContainer extends Component {
+class AddEditRoleContainer extends Component {
   static propTypes = {
-    initRole: PropTypes.object,
-    path: PropTypes.string.isRequired,
-    updateRoleMutation: PropTypes.func.isRequired
+    location: PropTypes.object.isRequired,
+    mutate: PropTypes.func.isRequired,
+    initRole: PropTypes.object
   };
 
   state = {
     role: this.props.initRole || {
-      name: "",
-      description: "",
+      name: null,
+      description: null,
       appList: [],
       startApp: { id: null }
     },
-    isLoadingRole: false
+    isLoadingRole: false,
+    isSnackbarOpen: false,
+    snackbarMessage: ""
   };
 
   render() {
-    const { path } = this.props;
+    const { location } = this.props;
 
     return (
       <AddEditRole
-        path={path}
+        location={location}
         role={this.state.role}
         handleNameChange={this._handleNameChange}
         handleDescriptionChange={this._handleDescriptionChange}
@@ -36,6 +38,8 @@ class EditRoleContainer extends Component {
         handleStartAppChange={this._handleStartAppChange}
         handleSubmit={this._handleSubmit}
         isLoadingRole={this.state.isLoadingRole}
+        isSnackbarOpen={this.state.isSnackbarOpen}
+        snackbarMessage={this.state.snackbarMessage}
       />
     );
   }
@@ -98,7 +102,7 @@ class EditRoleContainer extends Component {
       isLoadingRole: true
     });
 
-    const { updateRoleMutation } = this.props;
+    const { mutate, initRole } = this.props;
     const {
       id: roleId,
       name,
@@ -107,28 +111,41 @@ class EditRoleContainer extends Component {
       startApp: { id }
     } = this.state.role;
 
-    const variables = {
-      roleId,
-      payload: {
-        name,
-        description,
-        appList: appList.map(({ id }) => id),
-        startApp: id
-      }
+    const payload = {
+      name,
+      description,
+      appList: appList.map(({ id }) => id),
+      startApp: id
     };
+    const variables =
+      initRole != null
+        ? {
+            roleId,
+            payload
+          }
+        : {
+            payload
+          };
 
-    updateRoleMutation({
+    mutate({
       variables
     })
       .then(({ data }) => {
         this.setState({
-          isLoadingRole: false
+          isLoadingRole: false,
+          isSnackbarOpen: true,
+          snackbarMessage: "Role saved successfully."
         });
       })
       .catch(error => {
+        this.setState({
+          isLoadingRole: false,
+          isSnackbarOpen: true,
+          snackbarMessage: `Something went wrong: ${error}`
+        });
         console.error(error);
       });
   };
 }
 
-export default withLoading(EditRoleContainer);
+export default withLoading(AddEditRoleContainer);
