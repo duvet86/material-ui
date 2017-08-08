@@ -18,14 +18,14 @@ const AppListSelect = ({
       <MenuItem
         key={id}
         insetChildren={true}
-        checked={valuesIds.indexOf(id) > -1}
+        checked={valuesIds && valuesIds.indexOf(id) > -1}
         value={id}
         primaryText={label}
       />
     );
   }
 
-  function _startAppMenuItems(valuesId) {
+  function _startAppMenuItems() {
     const narrowedAppList = applicationList.filter(({ id }) =>
       appListValueIds.find(appId => appId === id)
     );
@@ -51,16 +51,18 @@ const AppListSelect = ({
         </SelectField>
       </div>
       <div>
-        <SelectField
-          hintText="Select an Application"
-          floatingLabelText="Default Application accessed after login"
-          value={startAppValueId}
-          fullWidth={true}
-          onChange={handleStartAppChange}
-          disabled={disabled}
-        >
-          {_startAppMenuItems(startAppValueId)}
-        </SelectField>
+        {appListValueIds && appListValueIds.length > 1
+          ? <SelectField
+              hintText="Select an Application"
+              floatingLabelText="Default Application accessed after login"
+              value={startAppValueId}
+              fullWidth={true}
+              onChange={handleStartAppChange}
+              disabled={disabled}
+            >
+              {_startAppMenuItems()}
+            </SelectField>
+          : null}
       </div>
     </div>
   );

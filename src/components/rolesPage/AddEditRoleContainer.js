@@ -4,7 +4,7 @@ import update from "immutability-helper";
 
 import withLoading from "lib/withLoading";
 
-import EditRole from "components/rolesPage/EditRole";
+import AddEditRole from "components/rolesPage/AddEditRole";
 
 class EditRoleContainer extends Component {
   static propTypes = {
@@ -14,7 +14,12 @@ class EditRoleContainer extends Component {
   };
 
   state = {
-    role: this.props.initRole,
+    role: this.props.initRole || {
+      name: "",
+      description: "",
+      appList: [],
+      startApp: { id: null }
+    },
     isLoadingRole: false
   };
 
@@ -22,9 +27,10 @@ class EditRoleContainer extends Component {
     const { path } = this.props;
 
     return (
-      <EditRole
+      <AddEditRole
         path={path}
         role={this.state.role}
+        handleNameChange={this._handleNameChange}
         handleDescriptionChange={this._handleDescriptionChange}
         handleAppListChange={this._handleAppListChange}
         handleStartAppChange={this._handleStartAppChange}
@@ -33,6 +39,15 @@ class EditRoleContainer extends Component {
       />
     );
   }
+
+  _handleNameChange = (event, newValue) =>
+    this.setState(
+      update(this.state, {
+        role: {
+          name: { $set: newValue }
+        }
+      })
+    );
 
   _handleDescriptionChange = (event, newValue) =>
     this.setState(
@@ -43,14 +58,27 @@ class EditRoleContainer extends Component {
       })
     );
 
-  _handleAppListChange = (event, index, values) =>
-    this.setState(
-      update(this.state, {
-        role: {
-          appList: { $set: values.map(id => ({ id })) }
-        }
-      })
-    );
+  _handleAppListChange = (event, index, values) => {
+    const { startApp: { id: startAppId } } = this.state.role;
+    const appIds = values.map(id => ({ id }));
+
+    return !startAppId && values.length === 1
+      ? this.setState(
+          update(this.state, {
+            role: {
+              appList: { $set: appIds },
+              startApp: { $set: { id: appIds[0].id } }
+            }
+          })
+        )
+      : this.setState(
+          update(this.state, {
+            role: {
+              appList: { $set: appIds }
+            }
+          })
+        );
+  };
 
   _handleStartAppChange = (event, index, value) =>
     this.setState(
@@ -91,7 +119,6 @@ class EditRoleContainer extends Component {
       variables
     })
       .then(({ data }) => {
-        console.log("Role Updated.", data);
         this.setState({
           isLoadingRole: false
         });

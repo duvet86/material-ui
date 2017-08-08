@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import { CardActions, CardTitle, CardText } from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 import {
   Table,
   TableBody,
@@ -11,8 +13,8 @@ import {
   TableRow
 } from "material-ui/Table";
 import TextField from "material-ui/TextField";
+
 import FilterIcon from "material-ui/svg-icons/content/filter-list";
-import RefreshIcon from "material-ui/svg-icons/navigation/refresh";
 
 import Role from "components/rolesPage/Role";
 
@@ -20,7 +22,11 @@ const RolesList = ({ roles, handleArchiveRole, location }) =>
   <Paper>
     <CardActions style={{ position: "absolute", right: 0 }}>
       <FlatButton label="Add Filter" primary={true} icon={<FilterIcon />} />
-      <FlatButton label="Refresh" primary={true} icon={<RefreshIcon />} />
+      <RaisedButton
+        label="Add New Role"
+        primary={true}
+        containerElement={<Link to={`${location.pathname}/new`} />}
+      />
     </CardActions>
     <CardTitle title="Manage Roles" />
     <CardText>

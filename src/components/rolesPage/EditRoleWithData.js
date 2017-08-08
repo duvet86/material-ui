@@ -6,7 +6,7 @@ import {
   roleByIdQuery,
   updateRoleMutation
 } from "components/rolesPage/graphqlQueries";
-import EditRoleContainer from "components/rolesPage/EditRoleContainer";
+import AddEditRoleContainer from "components/rolesPage/AddEditRoleContainer";
 
 const queryOptions = {
   options: ({ match: { params: { id } } }) => ({
@@ -28,4 +28,4 @@ const makeQuery = compose(
   graphql(roleByIdQuery, queryOptions)
 );
 
-export default makeQuery(EditRoleContainer);
+export default makeQuery(AddEditRoleContainer);

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { TableRow, TableRowColumn } from "material-ui/Table";
 import FlatButton from "material-ui/FlatButton";
+
 import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 
 const RoleRecord = ({
