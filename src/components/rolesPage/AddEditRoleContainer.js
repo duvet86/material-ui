@@ -21,8 +21,8 @@ class AddEditRoleContainer extends Component {
       startApp: { id: null }
     },
     isLoadingRole: false,
-    isSnackbarOpen: false,
-    snackbarMessage: ""
+    isActionFeedbackOpen: false,
+    actionFeedbackMessage: null
   };
 
   render() {
@@ -38,8 +38,9 @@ class AddEditRoleContainer extends Component {
         handleStartAppChange={this._handleStartAppChange}
         handleSubmit={this._handleSubmit}
         isLoadingRole={this.state.isLoadingRole}
-        isSnackbarOpen={this.state.isSnackbarOpen}
-        snackbarMessage={this.state.snackbarMessage}
+        isActionFeedbackOpen={this.state.isActionFeedbackOpen}
+        actionFeedbackMessage={this.state.actionFeedbackMessage}
+        onActionFeedbackClose={this._onActionFeedbackClose}
       />
     );
   }
@@ -133,19 +134,24 @@ class AddEditRoleContainer extends Component {
       .then(({ data }) => {
         this.setState({
           isLoadingRole: false,
-          isSnackbarOpen: true,
-          snackbarMessage: "Role saved successfully."
+          isActionFeedbackOpen: true,
+          actionFeedbackMessage: "Role saved successfully."
         });
       })
       .catch(error => {
         this.setState({
           isLoadingRole: false,
-          isSnackbarOpen: true,
-          snackbarMessage: `Something went wrong: ${error}`
+          isActionFeedbackOpen: true,
+          actionFeedbackMessage: `Something went wrong: ${error}`
         });
         console.error(error);
       });
   };
+
+  _onActionFeedbackClose = () =>
+    this.setState({
+      isActionFeedbackOpen: false
+    });
 }
 
 export default withLoading(AddEditRoleContainer);

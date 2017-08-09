@@ -13,12 +13,24 @@ import {
   TableRow
 } from "material-ui/Table";
 import TextField from "material-ui/TextField";
+import Dialog from "material-ui/Dialog";
 
 import FilterIcon from "material-ui/svg-icons/content/filter-list";
 
 import Role from "components/rolesPage/Role";
+import ActionFeedback from "components/core/ActionFeedback";
 
-const RolesList = ({ roles, handleArchiveRole, location }) =>
+const RolesList = ({
+  roles,
+  onShowAlert,
+  handleAlertClose,
+  location,
+  isActionFeedbackOpen,
+  actionFeedbackMessage,
+  onActionFeedbackClose,
+  isAlertOpen,
+  alertMessage
+}) =>
   <Paper>
     <CardActions style={{ position: "absolute", right: 0 }}>
       <FlatButton label="Add Filter" primary={true} icon={<FilterIcon />} />
@@ -50,23 +62,49 @@ const RolesList = ({ roles, handleArchiveRole, location }) =>
       </TableHeader>
       <TableBody showRowHover={true}>
         {roles.map(role => {
-          const boundEvent = () => handleArchiveRole(role.id);
+          const boundOnShowAlert = () => onShowAlert(role.id, role.name);
           return (
             <Role
               key={role.id}
               role={role}
-              handleArchiveRole={boundEvent}
               location={location}
+              onShowAlert={boundOnShowAlert}
             />
           );
         })}
       </TableBody>
     </Table>
+    <Dialog
+      actions={[
+        <FlatButton
+          label="Cancel"
+          primary={true}
+          onTouchTap={handleAlertClose}
+        />,
+        <FlatButton label="Ok" primary={true} onTouchTap={handleAlertClose} />
+      ]}
+      modal={false}
+      open={isAlertOpen}
+      onRequestClose={handleAlertClose}
+    >
+      {alertMessage}
+    </Dialog>
+    <ActionFeedback
+      isOpen={isActionFeedbackOpen}
+      message={actionFeedbackMessage}
+      onRequestClose={onActionFeedbackClose}
+    />
   </Paper>;
 
 RolesList.propTypes = {
   roles: PropTypes.array.isRequired,
-  handleArchiveRole: PropTypes.func.isRequired
+  onShowAlert: PropTypes.func.isRequired,
+  handleAlertClose: PropTypes.func.isRequired,
+  isActionFeedbackOpen: PropTypes.bool.isRequired,
+  onActionFeedbackClose: PropTypes.func.isRequired,
+  actionFeedbackMessage: PropTypes.string.isRequired,
+  isAlertOpen: PropTypes.bool.isRequired,
+  alertMessage: PropTypes.string.isRequired
 };
 
 export default RolesList;

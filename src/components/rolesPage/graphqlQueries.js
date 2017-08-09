@@ -62,9 +62,18 @@ const createRoleMutation = gql`
   ${roleInfoFragment}
 `;
 
+const archiveRoleMutation = gql`
+  mutation archiveRole($roleId: ID!) {
+    archiveRole(roleId: $roleId) {
+      id
+    }
+  }
+`;
+
 export {
   rolesListQuery,
   roleByIdQuery,
   updateRoleMutation,
-  createRoleMutation
+  createRoleMutation,
+  archiveRoleMutation
 };

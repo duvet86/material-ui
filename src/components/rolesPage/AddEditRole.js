@@ -8,7 +8,6 @@ import TextField from "material-ui/TextField";
 import CircularProgress from "material-ui/CircularProgress";
 
 import ListIcon from "material-ui/svg-icons/action/list";
-import DeleteIcon from "material-ui/svg-icons/action/delete";
 import SaveIcon from "material-ui/svg-icons/content/save";
 
 import { backOfAToken } from "lib/utility";
@@ -31,8 +30,9 @@ const AddEditRole = ({
   handleStartAppChange,
   handleSubmit,
   isLoadingRole,
-  isSnackbarOpen,
-  snackbarMessage
+  isActionFeedbackOpen,
+  actionFeedbackMessage,
+  onActionFeedbackClose
 }) => {
   const isSubmitDisbled =
     !name || !description || appList.length === 0 || startAppId == null;
@@ -47,7 +47,6 @@ const AddEditRole = ({
           icon={<ListIcon />}
           style={{ overflow: "visible" }}
         />
-        <FlatButton label="Delete" secondary={true} icon={<DeleteIcon />} />
       </CardActions>
       <CardTitle title={roleId ? "Edit Role" : "Add Role"} />
       <form onSubmit={handleSubmit}>
@@ -95,7 +94,11 @@ const AddEditRole = ({
           />
         </CardActions>
       </form>
-      <ActionFeedback isOpen={isSnackbarOpen} message={snackbarMessage} />
+      <ActionFeedback
+        isOpen={isActionFeedbackOpen}
+        message={actionFeedbackMessage}
+        onRequestClose={onActionFeedbackClose}
+      />
     </Card>
   );
 };
@@ -115,8 +118,9 @@ AddEditRole.propTypes = {
   handleAppListChange: PropTypes.func.isRequired,
   handleStartAppChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  isSnackbarOpen: PropTypes.bool.isRequired,
-  snackbarMessage: PropTypes.string.isRequired
+  isActionFeedbackOpen: PropTypes.bool.isRequired,
+  onActionFeedbackClose: PropTypes.func.isRequired,
+  actionFeedbackMessage: PropTypes.string.isRequired
 };
 
 export default AddEditRole;

@@ -1,6 +1,9 @@
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 
-import { rolesListQuery } from "components/rolesPage/graphqlQueries";
+import {
+  rolesListQuery,
+  archiveRoleMutation
+} from "components/rolesPage/graphqlQueries";
 import RolesListContainer from "components/rolesPage/RolesListContainer";
 
 const queryOptions = {
@@ -11,4 +14,9 @@ const queryOptions = {
   })
 };
 
-export default graphql(rolesListQuery, queryOptions)(RolesListContainer);
+const makeQuery = compose(
+  graphql(archiveRoleMutation),
+  graphql(rolesListQuery, queryOptions)
+);
+
+export default makeQuery(RolesListContainer);

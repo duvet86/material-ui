@@ -5,10 +5,11 @@ import { TableRow, TableRowColumn } from "material-ui/Table";
 import FlatButton from "material-ui/FlatButton";
 
 import EditIcon from "material-ui/svg-icons/editor/mode-edit";
+import DeleteIcon from "material-ui/svg-icons/action/delete";
 
 const RoleRecord = ({
   role: { id, name, description },
-  handleArchiveRole,
+  onShowAlert,
   location: { pathname },
   ...props
 }) =>
@@ -19,12 +20,24 @@ const RoleRecord = ({
     <TableRowColumn>
       {description}
     </TableRowColumn>
-    <TableRowColumn style={{ textAlign: "right" }}>
+    <TableRowColumn
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end"
+      }}
+    >
       <FlatButton
         label="Edit"
         primary={true}
         icon={<EditIcon />}
         containerElement={<Link to={`${pathname}/${id}`} />}
+      />
+      <FlatButton
+        label="Delete"
+        secondary={true}
+        icon={<DeleteIcon />}
+        onTouchTap={onShowAlert}
       />
     </TableRowColumn>
   </TableRow>;
@@ -34,7 +47,7 @@ RoleRecord.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
   }).isRequired,
-  handleArchiveRole: PropTypes.func.isRequired
+  onShowAlert: PropTypes.func.isRequired
 };
 
 export default RoleRecord;
