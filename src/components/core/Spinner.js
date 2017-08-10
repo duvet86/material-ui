@@ -5,7 +5,7 @@ import muiTheme from "lib/muiTheme";
 
 import CircularProgress from "material-ui/CircularProgress";
 
-class Spinner extends Component {
+export default class Spinner extends Component {
   static childContextTypes = {
     muiTheme: PropTypes.object
   };
@@ -20,5 +20,3 @@ class Spinner extends Component {
     return <CircularProgress size={80} thickness={7} />;
   }
 }
-
-export default Spinner;

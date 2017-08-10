@@ -5,6 +5,7 @@ const roleInfoFragment = gql`
     id
     name
     description
+    isSystem
   }
 `;
 
@@ -64,9 +65,7 @@ const createRoleMutation = gql`
 
 const archiveRoleMutation = gql`
   mutation archiveRole($roleId: ID!) {
-    archiveRole(roleId: $roleId) {
-      id
-    }
+    archiveRole(roleId: $roleId)
   }
 `;
 

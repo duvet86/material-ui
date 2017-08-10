@@ -14,8 +14,10 @@ import {
 } from "material-ui/Table";
 import TextField from "material-ui/TextField";
 import Dialog from "material-ui/Dialog";
+import CircularProgress from "material-ui/CircularProgress";
 
 import FilterIcon from "material-ui/svg-icons/content/filter-list";
+import DoneIcon from "material-ui/svg-icons/action/done";
 
 import Role from "components/rolesPage/Role";
 import ActionFeedback from "components/core/ActionFeedback";
@@ -29,7 +31,9 @@ const RolesList = ({
   actionFeedbackMessage,
   onActionFeedbackClose,
   isAlertOpen,
-  alertMessage
+  alertMessage,
+  isDeleting,
+  isError
 }) =>
   <Paper>
     <CardActions style={{ position: "absolute", right: 0 }}>
@@ -75,24 +79,31 @@ const RolesList = ({
       </TableBody>
     </Table>
     <Dialog
+      title={alertMessage}
       actions={[
         <FlatButton
           label="Cancel"
           primary={true}
           onTouchTap={handleAlertClose}
         />,
-        <FlatButton label="Ok" primary={true} onTouchTap={handleAlertClose} />
+        <RaisedButton
+          label="Ok"
+          primary={true}
+          onTouchTap={handleAlertClose}
+          icon={isDeleting ? <CircularProgress size={25} /> : <DoneIcon />}
+        />
       ]}
       modal={false}
       open={isAlertOpen}
       onRequestClose={handleAlertClose}
     >
-      {alertMessage}
+      Are you sure?
     </Dialog>
     <ActionFeedback
       isOpen={isActionFeedbackOpen}
       message={actionFeedbackMessage}
       onRequestClose={onActionFeedbackClose}
+      error={isError}
     />
   </Paper>;
 
@@ -104,7 +115,9 @@ RolesList.propTypes = {
   onActionFeedbackClose: PropTypes.func.isRequired,
   actionFeedbackMessage: PropTypes.string.isRequired,
   isAlertOpen: PropTypes.bool.isRequired,
-  alertMessage: PropTypes.string.isRequired
+  alertMessage: PropTypes.string.isRequired,
+  isDeleting: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired
 };
 
 export default RolesList;

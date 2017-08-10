@@ -22,7 +22,7 @@ class AddEditRoleContainer extends Component {
     },
     isLoadingRole: false,
     isActionFeedbackOpen: false,
-    actionFeedbackMessage: null
+    actionFeedbackMessage: ""
   };
 
   render() {

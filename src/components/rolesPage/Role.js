@@ -8,7 +8,7 @@ import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 import DeleteIcon from "material-ui/svg-icons/action/delete";
 
 const RoleRecord = ({
-  role: { id, name, description },
+  role: { id, name, description, isSystem },
   onShowAlert,
   location: { pathname },
   ...props
@@ -31,12 +31,14 @@ const RoleRecord = ({
         label="Edit"
         primary={true}
         icon={<EditIcon />}
+        disabled={isSystem}
         containerElement={<Link to={`${pathname}/${id}`} />}
       />
       <FlatButton
         label="Delete"
         secondary={true}
         icon={<DeleteIcon />}
+        disabled={isSystem}
         onTouchTap={onShowAlert}
       />
     </TableRowColumn>
