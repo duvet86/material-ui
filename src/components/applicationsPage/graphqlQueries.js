@@ -1,8 +1,12 @@
 import { gql } from "react-apollo";
 
 const applicationsListQuery = gql`
-  query applicationList {
+  query applications {
+    id
     label
+    order
+    icon
+    isSystem
   }
 `;
 

@@ -10,9 +10,6 @@ const formBuilder = asyncComponent(() =>
   import("components/formBuilder/FormBuilderWithData")
 );
 const help = asyncComponent(() => import("components/staticPages/Help"));
-const applications = asyncComponent(() =>
-  import("components/applicationsPage/ApplicationsPageWithData")
-);
 const roles = asyncComponent(() =>
   import("components/rolesPage/RolesListWithData")
 );
@@ -21,6 +18,9 @@ const editRole = asyncComponent(() =>
 );
 const addRole = asyncComponent(() =>
   import("components/rolesPage/AddRoleWithData")
+);
+const applications = asyncComponent(() =>
+  import("components/applicationsPage/ApplicationsListWithData")
 );
 
 export default {
