@@ -19,11 +19,15 @@ import CircularProgress from "material-ui/CircularProgress";
 import FilterIcon from "material-ui/svg-icons/content/filter-list";
 import DoneIcon from "material-ui/svg-icons/action/done";
 
-import Role from "components/rolesPage/Role";
+import TableListRow from "components/core/TableListRow";
 import ActionFeedback from "components/core/ActionFeedback";
 
-const RolesList = ({
-  roles,
+const TableList = ({
+  pageTitle,
+  columnHeaders,
+  labelProperty,
+  excludedProperties,
+  itemList,
   onShowAlert,
   handleAlertClose,
   location,
@@ -39,38 +43,39 @@ const RolesList = ({
     <CardActions style={{ position: "absolute", right: 0 }}>
       <FlatButton label="Add Filter" primary={true} icon={<FilterIcon />} />
       <RaisedButton
-        label="Add New Role"
+        label="Add New"
         primary={true}
         containerElement={<Link to={`${location.pathname}/new`} />}
       />
     </CardActions>
-    <CardTitle title="Manage Roles" />
+    <CardTitle title={pageTitle} />
     <CardText>
       <TextField hintText="Search" />
     </CardText>
     <Table>
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
-          <TableHeaderColumn>
-            <FlatButton label="Name" fullWidth style={{ textAlign: "left" }} />
-          </TableHeaderColumn>
-          <TableHeaderColumn>
-            <FlatButton
-              label="Description"
-              fullWidth
-              style={{ textAlign: "left" }}
-            />
-          </TableHeaderColumn>
+          {columnHeaders.map((label, index) =>
+            <TableHeaderColumn key={index}>
+              <FlatButton
+                label={label}
+                fullWidth
+                style={{ textAlign: "left" }}
+              />
+            </TableHeaderColumn>
+          )}
           <TableHeaderColumn />
         </TableRow>
       </TableHeader>
       <TableBody showRowHover={true}>
-        {roles.map(role => {
-          const boundOnShowAlert = () => onShowAlert(role.id, role.name);
+        {itemList.map(item => {
+          const boundOnShowAlert = () =>
+            onShowAlert(item.id, item[labelProperty]);
           return (
-            <Role
-              key={role.id}
-              role={role}
+            <TableListRow
+              excludedProperties={excludedProperties}
+              key={item.id}
+              item={item}
               location={location}
               onShowAlert={boundOnShowAlert}
             />
@@ -107,8 +112,12 @@ const RolesList = ({
     />
   </Paper>;
 
-RolesList.propTypes = {
-  roles: PropTypes.array.isRequired,
+TableList.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  columnHeaders: PropTypes.array.isRequired,
+  labelProperty: PropTypes.string.isRequired,
+  excludedProperties: PropTypes.array.isRequired,
+  itemList: PropTypes.array.isRequired,
   onShowAlert: PropTypes.func.isRequired,
   handleAlertClose: PropTypes.func.isRequired,
   isActionFeedbackOpen: PropTypes.bool.isRequired,
@@ -120,4 +129,4 @@ RolesList.propTypes = {
   isError: PropTypes.bool.isRequired
 };
 
-export default RolesList;
+export default TableList;

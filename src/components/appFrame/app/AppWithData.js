@@ -4,8 +4,8 @@ import { applicationListQuery } from "components/appFrame/app/graphqlQueries";
 import AppContainer from "components/appFrame/app/AppContainer";
 
 const applicationListQueryOptions = {
-  props: ({ ownProps, data: { loading, error, applicationList } }) => ({
-    applicationList,
+  props: ({ ownProps, data: { loading, error, applications } }) => ({
+    applications,
     error,
     isLoading: loading
   })

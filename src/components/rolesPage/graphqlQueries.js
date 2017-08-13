@@ -19,8 +19,8 @@ const rolesListQuery = gql`
 `;
 
 const roleByIdQuery = gql`
-  query roleById($roleId: ID!) {
-    roleById(id: $roleId) {
+  query roleById($id: ID!) {
+    roleById(id: $id) {
       ...roleInfo
       appList {
         id
@@ -34,8 +34,8 @@ const roleByIdQuery = gql`
 `;
 
 const updateRoleMutation = gql`
-  mutation updateRole($roleId: ID!, $payload: RoleInput!) {
-    updateRole(roleId: $roleId, payload: $payload) {
+  mutation updateRole($id: ID!, $payload: RoleInput!) {
+    updateRole(id: $id, payload: $payload) {
       ...roleInfo
       appList {
         id
@@ -64,8 +64,8 @@ const createRoleMutation = gql`
 `;
 
 const archiveRoleMutation = gql`
-  mutation archiveRole($roleId: ID!) {
-    archiveRole(roleId: $roleId)
+  mutation archiveRole($id: ID!) {
+    archiveRole(id: $id)
   }
 `;
 

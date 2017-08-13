@@ -7,19 +7,21 @@ import FlatButton from "material-ui/FlatButton";
 import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 import DeleteIcon from "material-ui/svg-icons/action/delete";
 
-const RoleRecord = ({
-  role: { id, name, description, isSystem },
+const TableListRow = ({
+  item,
   onShowAlert,
   location: { pathname },
+  excludedProperties,
   ...props
 }) =>
   <TableRow {...props}>
-    <TableRowColumn>
-      {name}
-    </TableRowColumn>
-    <TableRowColumn>
-      {description}
-    </TableRowColumn>
+    {Object.keys(item)
+      .filter(key => excludedProperties.indexOf(key) === -1)
+      .map((key, index) =>
+        <TableRowColumn key={index}>
+          {item[key]}
+        </TableRowColumn>
+      )}
     <TableRowColumn
       style={{
         display: "flex",
@@ -31,25 +33,23 @@ const RoleRecord = ({
         label="Edit"
         primary={true}
         icon={<EditIcon />}
-        disabled={isSystem}
-        containerElement={<Link to={`${pathname}/${id}`} />}
+        disabled={item.isSystem}
+        containerElement={<Link to={`${pathname}/${item.id}`} />}
       />
       <FlatButton
         label="Delete"
         secondary={true}
         icon={<DeleteIcon />}
-        disabled={isSystem}
+        disabled={item.isSystem}
         onTouchTap={onShowAlert}
       />
     </TableRowColumn>
   </TableRow>;
 
-RoleRecord.propTypes = {
-  role: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
-  }).isRequired,
-  onShowAlert: PropTypes.func.isRequired
+TableListRow.propTypes = {
+  item: PropTypes.object.isRequired,
+  onShowAlert: PropTypes.func.isRequired,
+  excludedProperties: PropTypes.array.isRequired
 };
 
-export default RoleRecord;
+export default TableListRow;

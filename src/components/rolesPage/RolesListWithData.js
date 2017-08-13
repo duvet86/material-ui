@@ -8,8 +8,11 @@ import RolesListContainer from "components/rolesPage/RolesListContainer";
 
 const queryOptions = {
   props: ({ ownProps, data: { loading, error, roles } }) => ({
+    pageTitle: "Manage Roles",
+    columnHeaders: ["name", "description"],
+    labelProperty: "name",
     isLoading: loading,
-    roles,
+    itemList: roles,
     error
   })
 };

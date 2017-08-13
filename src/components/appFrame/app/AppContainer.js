@@ -9,7 +9,7 @@ import NotFoundRoute from "components/routes/NotFoundRoute";
 
 class AppContainer extends Component {
   static propTypes = {
-    applicationList: PropTypes.arrayOf(
+    applications: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
         key: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { applicationList, location, match } = this.props;
+    const { applications, location, match } = this.props;
     const { params: { appKey } } = match;
 
     let contentStyle = {
@@ -46,7 +46,7 @@ class AppContainer extends Component {
       contentStyle.marginLeft = "256px";
     }
 
-    const app = applicationList.find(({ key }) => key === appKey);
+    const app = applications.find(({ key }) => key === appKey);
     if (app) {
       return (
         <App
@@ -54,7 +54,7 @@ class AppContainer extends Component {
           drawerState={this.state.drawerOpen}
           handleToggle={this._handleToggle}
           contentStyle={contentStyle}
-          appList={applicationList}
+          appList={applications}
           currentAppLabel={app.label}
           currentAppKey={app.key}
           location={location}

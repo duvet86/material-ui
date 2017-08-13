@@ -8,7 +8,7 @@ import AddEditRoleContainer from "components/rolesPage/AddEditRoleContainer";
 
 const queryOptions = {
   options: ({ match: { params: { id } } }) => ({
-    variables: { roleId: id }
+    variables: { id }
   }),
   props: ({ ownProps, data: { loading, error, roleById } }) => ({
     isLoading: loading,

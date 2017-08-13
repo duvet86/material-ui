@@ -4,10 +4,10 @@ import { applicationListQuery } from "components/rolesPage/appListSelect/graphql
 import AppListSelect from "components/rolesPage/appListSelect/AppListSelect";
 
 const applicationListQueryOptions = {
-  props: ({ ownProps, data: { loading, error, applicationList } }) => ({
-    error,
-    applicationList,
-    isLoading: loading
+  props: ({ ownProps, data: { loading, error, applications } }) => ({
+    applications,
+    isLoading: loading,
+    error
   })
 };
 

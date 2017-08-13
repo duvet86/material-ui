@@ -6,7 +6,7 @@ import MenuItem from "material-ui/MenuItem";
 import withLoading from "lib/withLoading";
 
 const AppListSelect = ({
-  applicationList,
+  applications,
   appListValueIds,
   startAppValueId,
   handleAppListChange,
@@ -14,7 +14,7 @@ const AppListSelect = ({
   disabled
 }) => {
   function _appListMenuItems(valuesIds) {
-    return applicationList.map(({ id, label }) =>
+    return applications.map(({ id, label }) =>
       <MenuItem
         key={id}
         insetChildren={true}
@@ -26,7 +26,7 @@ const AppListSelect = ({
   }
 
   function _startAppMenuItems() {
-    const narrowedAppList = applicationList.filter(({ id }) =>
+    const narrowedAppList = applications.filter(({ id }) =>
       appListValueIds.find(appId => appId === id)
     );
 
@@ -69,7 +69,7 @@ const AppListSelect = ({
 };
 
 AppListSelect.propTypes = {
-  applicationList: PropTypes.array.isRequired,
+  applications: PropTypes.array.isRequired,
   appListValueIds: PropTypes.array.isRequired,
   handleAppListChange: PropTypes.func.isRequired,
   handleStartAppChange: PropTypes.func.isRequired,
