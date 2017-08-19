@@ -5,12 +5,8 @@ import ApplicationsListContainer from "components/applicationsPage/ApplicationsL
 
 const queryOptions = {
   props: ({ ownProps, data: { loading, error, applications } }) => ({
-    pageTitle: "Manage Applications",
-    columnHeaders: ["label", "description"],
-    labelProperty: "label",
-    excludeFromItem: ["order", "icon", "key"],
     isLoading: loading,
-    itemList: applications,
+    applications,
     error
   })
 };

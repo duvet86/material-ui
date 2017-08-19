@@ -98,7 +98,7 @@ const FormElementContainer = ({
             <IconButton
               style={buttonStyle}
               iconStyle={iconStyle}
-              onTouchTap={onPageItemRemove}
+              onClick={onPageItemRemove}
             >
               <CloseIcon />
             </IconButton>

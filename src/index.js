@@ -13,9 +13,6 @@ import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import UnauthenticatedRoute from "components/routes/UnauthenticatedRoute";
 import RedirectToStartPageWithData from "components/routes/RedirectToStartPageWithData";
 import AppWithData from "components/appFrame/app/AppWithData";
-import injectTapEventPlugin from "react-tap-event-plugin";
-
-injectTapEventPlugin();
 
 render(
   <ApolloProvider client={apolloClient}>

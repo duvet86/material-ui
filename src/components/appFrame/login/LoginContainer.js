@@ -108,7 +108,13 @@ class LoginContainer extends Component {
             redirect: `/${jwtToken.appKey}/`
           });
         }
-      });
+      })
+      .catch(err =>
+        this.setState({
+          isLoading: false,
+          errorMessage: JSON.stringify(err)
+        })
+      );
   };
 }
 

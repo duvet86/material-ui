@@ -41,7 +41,7 @@ const TableListRow = ({
         secondary={true}
         icon={<DeleteIcon />}
         disabled={item.isSystem}
-        onTouchTap={onShowAlert}
+        onClick={onShowAlert}
       />
     </TableRowColumn>
   </TableRow>;

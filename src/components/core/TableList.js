@@ -89,12 +89,12 @@ const TableList = ({
         <FlatButton
           label="Cancel"
           primary={true}
-          onTouchTap={handleAlertClose}
+          onClick={handleAlertClose}
         />,
         <RaisedButton
           label="Ok"
           primary={true}
-          onTouchTap={handleAlertClose}
+          onClick={handleAlertClose}
           icon={isDeleting ? <CircularProgress size={25} /> : <DoneIcon />}
         />
       ]}
