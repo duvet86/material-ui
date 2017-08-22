@@ -13,4 +13,10 @@ const applicationsListQuery = gql`
   }
 `;
 
-export { applicationsListQuery };
+const archiveApplicationMutation = gql`
+  mutation archiveApplication($id: ID!) {
+    archiveApplication(id: $id)
+  }
+`;
+
+export { applicationsListQuery, archiveApplicationMutation };

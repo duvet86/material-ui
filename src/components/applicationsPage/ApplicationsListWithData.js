@@ -6,7 +6,7 @@ import ApplicationsListContainer from "components/applicationsPage/ApplicationsL
 const queryOptions = {
   props: ({ ownProps, data: { loading, error, applications } }) => ({
     isLoading: loading,
-    applications,
+    data: applications,
     error
   })
 };

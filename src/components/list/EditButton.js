@@ -6,13 +6,19 @@ import FlatButton from "material-ui/FlatButton";
 import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 
 const EditButton = ({ record, pathname, disabledSource }) =>
-  <FlatButton
-    label="Edit"
-    primary={true}
-    icon={<EditIcon />}
-    disabled={record[disabledSource]}
-    containerElement={<Link to={`${pathname}/${record.id}`} />}
-  />;
+  record[disabledSource]
+    ? <FlatButton
+        label="Edit"
+        primary={true}
+        icon={<EditIcon />}
+        disabled={true}
+      />
+    : <FlatButton
+        label="Edit"
+        primary={true}
+        icon={<EditIcon />}
+        containerElement={<Link to={`${pathname}/${record.id}`} />}
+      />;
 
 EditButton.propTypes = {
   record: PropTypes.object.isRequired,
