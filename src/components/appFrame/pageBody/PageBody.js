@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Grid } from "react-flexbox-grid";
+import injectSheet from "react-jss";
 
 import asyncComponent from "lib/asyncComponent";
 import componentMapping from "lib/componentMapping";
@@ -8,8 +8,15 @@ import withLoading from "lib/withLoading";
 
 import NotFoundRoute from "components/routes/NotFoundRoute";
 
-const PageBody = ({ style, routes }) =>
-  <Grid fluid style={style}>
+const style = {
+  containerClass: {
+    transition: "margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)",
+    marginRight: "1.1em"
+  }
+};
+
+const PageBody = ({ classes: { containerClass }, style, routes }) =>
+  <div className={containerClass} style={style}>
     <Switch>
       {routes.map(({ id, location, component }) =>
         <Route
@@ -35,6 +42,6 @@ const PageBody = ({ style, routes }) =>
       />
       <NotFoundRoute />
     </Switch>
-  </Grid>;
+  </div>;
 
-export default withLoading(PageBody);
+export default withLoading(injectSheet(style)(PageBody));

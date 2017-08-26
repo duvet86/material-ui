@@ -39,12 +39,9 @@ class AppContainer extends Component {
     const { applications, location, match } = this.props;
     const { params: { appKey } } = match;
 
-    let contentStyle = {
-      transition: "margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)"
+    const contentStyle = {
+      marginLeft: this.state.drawerOpen ? "21em" : "15px"
     };
-    if (this.state.drawerOpen) {
-      contentStyle.marginLeft = "256px";
-    }
 
     const app = applications.find(({ key }) => key === appKey);
     if (app) {

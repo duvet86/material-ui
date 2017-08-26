@@ -6,7 +6,7 @@ const style = {
   pageHeader: {
     paddingBottom: ".3em",
     fontSize: "1.5em",
-    margin: ".67em 0",
+    margin: ".47em 0",
     textTransform: "uppercase",
     fontWeight: 500
   }
